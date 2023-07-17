@@ -2,7 +2,7 @@
  * 자바에는 원시타입과 래퍼 클래스가 존재한다. 하지만 코틀린은 래퍼 클래스만 존재한다. 코틀린에서는 기본적으로 non-null Type 이다.
  */
 fun variable() {
-    var canNotBeUsed: String = null // 사용 할 수 없다.
+    // var canNotBeUsed: String = null 사용할 수 없다
 
     var nu: String? = "Test" // null 을 세팅하고 싶을때는 ?를 통해 nullable 하다고 알려줄 수 있다. 변수를 메소드 파라미터로 사용할 때 역시 알려줘야 한다
     var nu2: String = "Test2"
@@ -32,10 +32,7 @@ fun varTest() {
     a = "change"
     println(a) // change
 
-    a = 0 // error
+    // a = 0 error
 }
 
-fun valTest() {
-    val a = "test"
-    a = "change" // error
-}
+
