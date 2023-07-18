@@ -5,8 +5,6 @@ G
 src/main/kotlin/Main.kt,d/8/d83ae3847b7d408136086cc5e9e95f5f7c126ed5
 Z
 *src/main/kotlin/controlflow/controlflow.kt,6/a/6a3c6539076fb8baf8e0a34de14c13044baf2436
-N
-src/main/kotlin/scope/scope.kt,2/e/2e749c3a08fb212547f1c91233fc23142834c38b
 V
 &src/main/kotlin/myfuntion/myFuntion.kt,e/a/eaa2cb8323230bdffe32fcdbb832e9f7eaf3f1a2
 `
@@ -20,3 +18,9 @@ T
 $src/main/kotlin/variable/variable.kt,9/7/970031cf3d81efd2eaf775c9a088d593e1f9aef8
 Z
 *src/main/kotlin/inheritance/inheritance.kt,9/3/936b87f54a7c9ac2b50fdda8859c0202f31f9b48
+V
+&src/main/kotlin/dataclass/dataClass.kt,d/9/d988aa6ff4071ee33cab77e52a6908a3f22c5d05
+X
+(src/main/kotlin/dataclass/CommonUtils.kt,5/b/5b8c1e7839e0b2b6199ee64b13b911c4b5b71693
+N
+src/main/kotlin/scope/scope.kt,2/e/2e749c3a08fb212547f1c91233fc23142834c38b
