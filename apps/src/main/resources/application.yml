@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    #active: local, redis
+    active: local, local cache
+
+---
+# DATABASE
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sbb
+    driver-class-name: org.postgresql.Driver
+    username: web
+    password: web
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        show_sql: true
+    hibernate:
+      #       ddl-auto: create
+      ddl-auto: update
+
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 8881
