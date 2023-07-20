@@ -30,3 +30,7 @@ W
 'src/main/kotlin/enumclass/ridinglist.kt,c/2/c2932bcdbdabc9c4ebec0e9175b132dc841e6c51
 W
 'src/main/kotlin/exception/Exeception.kt,c/8/c8e368a2f6060456f0e4bbab7552e89a877d7b7c
+e
+5src/main/kotlin/lambdaexpression/LambdaExpresstion.kt,2/6/269d8357e41aa4147dd7a4bbf71547e81c953195
+h
+8src/main/kotlin/arrayandcollection/ArrayAndCollection.kt,3/7/372a426b4ee36603607e1362a1447cd7f10356fc
