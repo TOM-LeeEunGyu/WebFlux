@@ -8,4 +8,5 @@ interface BlockedUserRepository: BaseRepository<BlockedUser, Long> {
     fun findByFromUserIdAndToUserId(fromUserId: Long, toUserId: Long): BlockedUser?
     fun findByFromUserId(fromUserId: Long): List<BlockedUser>
     fun findByToUserId(toUserId: Long): List<BlockedUser>
+
 }

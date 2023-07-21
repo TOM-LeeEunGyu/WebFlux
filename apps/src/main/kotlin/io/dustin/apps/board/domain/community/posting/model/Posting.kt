@@ -22,18 +22,20 @@ class Posting(
     @Column(name = "is_deleted")
     var isDeleted: YesOrNo = YesOrNo.N,
 
-    @Column(columnDefinition = "bigint default 0")
-    var likeCount: Long,
 
-    @Column(columnDefinition = "bigint default 0")
-    var clickCount: Long,
-
-    @Column(columnDefinition = "bigint default 0")
-    var commentCount: Long,
 
     var userId: Long
 
 ) : BaseEntity() {
+
+    @Column(columnDefinition = "bigint default 0")
+    var likeCount: Long = 0
+
+    @Column(columnDefinition = "bigint default 0")
+    var clickCount: Long = 0
+
+    @Column(columnDefinition = "bigint default 0")
+    var commentCount: Long = 0
 
     fun updateSubject(subject: String) {
         this.subject = subject
