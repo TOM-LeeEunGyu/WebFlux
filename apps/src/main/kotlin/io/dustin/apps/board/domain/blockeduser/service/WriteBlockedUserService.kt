@@ -19,7 +19,6 @@ class WriteBlockedUserService (
         return blockedUser
     }
 
-    @Transactional
     fun delete(fromUserId: Long, toUserId: Long) {
         blockedUserRepository.deleteByFromUserIdAndToUserId(fromUserId, toUserId)
     }

@@ -1,11 +1,9 @@
 package io.dustin.apps.board.domain.community.posting.service
 
-import io.dustin.apps.board.domain.community.comment.model.Comment
 import io.dustin.apps.board.domain.community.posting.model.Posting
 import io.dustin.apps.board.domain.community.posting.repository.PostingRepository
 import io.dustin.apps.common.exception.DataNotFoundException
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service("posting")
@@ -66,7 +64,7 @@ class WritePostingService (
     fun findByIdOrThrow(postingId: Long): Posting {
         return postingRepository.findById(postingId)
             .orElseThrow {
-                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", commentId.toString()))
+                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", postingId.toString()))
             }
     }
 }

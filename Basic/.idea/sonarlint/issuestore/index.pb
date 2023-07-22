@@ -34,3 +34,7 @@ e
 5src/main/kotlin/lambdaexpression/LambdaExpresstion.kt,2/6/269d8357e41aa4147dd7a4bbf71547e81c953195
 h
 8src/main/kotlin/arrayandcollection/ArrayAndCollection.kt,3/7/372a426b4ee36603607e1362a1447cd7f10356fc
+`
+0src/main/kotlin/collectionsort/CollectionSort.kt,0/f/0f9403ccf8393c6b849d58cd1a923453ef944274
+V
+&src/main/kotlin/enumclass/EnumClass.kt,a/3/a365392d53b6b934eb2f347c7f1f6018a72743eb
