@@ -52,12 +52,12 @@ class ReadQuestionService (
 //        }
 //    }
 
-    fun findById(postingId: Long): Question {
-        return questionRepository.findById(postingId).orElse(null)
+    fun findById(questionId: Long): Question {
+        return questionRepository.findById(questionId).orElse(null)
     }
 
-    fun findByIdOrThrow(postingId: Long): Question {
-        return questionRepository.findById(postingId)
+    fun findByIdOrThrow(questionId: Long): Question {
+        return questionRepository.findById(questionId)
             .orElseThrow {
                 DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", postingId.toString()))
             }

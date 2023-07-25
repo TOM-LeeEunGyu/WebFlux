@@ -26,7 +26,7 @@ class Question (
 ) : BaseEntity() {
 
     @Column(columnDefinition = "bigint default 0")
-    private var clickCount: Long = 0
+    var clickCount: Long = 0
 
 
     fun updateSubject(subject: String) {
@@ -41,7 +41,7 @@ class Question (
         isDeleted = YesOrNo.Y
     }
 
-    fun setClickCount(clickCount: Long) {
+    fun updateClickCount(clickCount: Long) {
         this.clickCount = clickCount
     }
 }

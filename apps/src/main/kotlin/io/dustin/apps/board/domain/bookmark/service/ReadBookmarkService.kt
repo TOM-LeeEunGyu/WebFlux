@@ -9,7 +9,6 @@ class ReadBookmarkService (
     private val bookmarkRepository: BookmarkRepository
 
 ) {
-    @Transactional(readOnly = true)
     fun getBookmark(userId: Long, boardId: Long) =
             bookmarkRepository.findByUserIdAndBoardId(userId, boardId)
 
