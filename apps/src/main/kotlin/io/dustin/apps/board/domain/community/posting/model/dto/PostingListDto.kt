@@ -29,5 +29,5 @@ data class PostingListDto(
         }
     }
 
-    override fun getId(): Long = id
+    override fun id(): Long = id
 }

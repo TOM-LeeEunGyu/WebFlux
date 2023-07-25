@@ -25,5 +25,5 @@ data class QuestionDto(
             )
         }
     }
-    override fun getId(): Long = id
+    override fun id(): Long = id
 }

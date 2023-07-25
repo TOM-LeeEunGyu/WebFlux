@@ -43,7 +43,7 @@ class Comment (
         this.isDeleted = YesOrNo.Y
     }
 
-    fun setLikeCount(likeCount: Long) {
+    fun updateLikeCount(likeCount: Long) {
         this.likeCount = likeCount
     }
 

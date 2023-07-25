@@ -49,15 +49,15 @@ class Posting(
         this.isDeleted = YesOrNo.Y
     }
 
-    fun setLikeCount(likeCount: Long) {
+    fun updateLikeCount(likeCount: Long) {
         this.likeCount = likeCount
     }
 
-    fun setCommentCount(commentCount: Long) {
+    fun updateCommentCount(commentCount: Long) {
         this.commentCount = commentCount
     }
 
-    fun setClickCount(clickCount: Long) {
+    fun updateClickCount(clickCount: Long) {
         this.clickCount = clickCount
     }
 

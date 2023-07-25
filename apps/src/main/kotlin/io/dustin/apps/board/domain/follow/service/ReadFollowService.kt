@@ -3,6 +3,7 @@ package io.dustin.apps.board.domain.follow.service
 import io.dustin.apps.board.domain.follow.model.Follow
 import io.dustin.apps.board.domain.follow.repository.FollowRepository
 import org.springframework.stereotype.Service
+import java.io.Serializable
 
 @Service
 class ReadFollowService (

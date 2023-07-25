@@ -33,14 +33,14 @@ class WriteCommentService (
         println("댓글 id : [$commentId] 좋아요 수 증가")
         val comment = findByIdOrThrow(commentId)
         val likeCount = comment.likeCount + 1
-        comment.setLikeCount(likeCount)
+        comment.updateLikeCount(likeCount)
     }
 
     fun likeUnCount(commentId: Long) {
         println("댓글 id : [$commentId] 좋아요 수 감소")
         val comment = findByIdOrThrow(commentId)
         val likeCount = comment.likeCount - 1
-        comment.setLikeCount(likeCount)
+        comment.updateLikeCount(likeCount)
     }
 
     fun findById(commentId: Long): Comment {

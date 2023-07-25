@@ -31,5 +31,5 @@ data class PostingDto(
             )
         }
     }
-    override fun getId(): Long = id
+    override fun id(): Long = id
 }

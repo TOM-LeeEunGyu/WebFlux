@@ -6,6 +6,7 @@ import io.dustin.apps.board.domain.blockeduser.service.WriteBlockedUserService
 import io.dustin.apps.common.exception.DataNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
+import kotlin.jvm.Throws
 
 @Service
 class DeleteBlockedUserUseCase (
@@ -13,19 +14,14 @@ class DeleteBlockedUserUseCase (
     private val readBlockedUserService: ReadBlockedUserService,
 ) {
 
+    @Throws(
+        RuntimeException::class,
+        ResponseStatusException::class,
+        DataNotFoundException::class,
+    )
     fun execute(fromUserId: Long, toUserId: Long): BlockedUserDto {
-        return try {
-
-            val blockedUser = readBlockedUserService.getBlockedUser(fromUserId, toUserId)
-            writeBlockedUserService.delete(fromUserId, toUserId)
-            BlockedUserDto.from(blockedUser)
-
-        } catch (dnf: DataNotFoundException) {
-            throw DataNotFoundException(dnf.message)
-        } catch (rse: ResponseStatusException) {
-            throw ResponseStatusException(rse.statusCode, rse.message)
-        } catch (e: Exception) {
-            throw RuntimeException("잘못된 요청입니다.")
-        }
+        val blockedUser = readBlockedUserService.getBlockedUser(fromUserId, toUserId)
+        writeBlockedUserService.delete(fromUserId, toUserId)
+        return BlockedUserDto.from(blockedUser)
     }
 }

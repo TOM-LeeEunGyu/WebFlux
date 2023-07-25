@@ -17,7 +17,7 @@ class ReadPostingService (
 
 
     @Transactional(readOnly = true)
-    fun getPostingList(userId: Long, nextId: Long?, size: Int) =
+    fun getPostingList(userId: Long, nextId: Long?, size: Long) =
         postingRepository.getPostingList(userId, nextId, size)
 
 

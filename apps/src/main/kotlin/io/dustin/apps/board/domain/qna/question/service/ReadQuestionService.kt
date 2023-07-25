@@ -18,8 +18,8 @@ class ReadQuestionService (
     private val questionRepository: QuestionRepository
 ) {
 
-    fun getQuestion(userId: Long, questionId: Long): QuestionDto  =
-        /**
+    fun getQuestion(userId: Long, questionId: Long): QuestionDto?  =
+        /**g
          * clickCount 한개 증가시키기
          */
         questionRepository.getQuestion(userId, questionId)

@@ -22,6 +22,8 @@ configurations {
 	}
 }
 
+
+
 repositories {
 	mavenCentral()
 }
@@ -41,6 +43,12 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 
 	kapt("org.springframework.boot:spring-boot-configuration-processor")
+
+
+
+	// Querydsl 추가
+	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+	kapt("com.querydsl:querydsl-apt:5.0.0:jakarta") // kapt 플러그인을 사용하여 Annotation Processor 의존성 추가
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(module = "junit-vintage-engine")
