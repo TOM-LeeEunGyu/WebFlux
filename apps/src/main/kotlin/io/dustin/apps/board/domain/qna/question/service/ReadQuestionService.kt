@@ -24,7 +24,7 @@ class ReadQuestionService (
          */
         questionRepository.getQuestion(userId, questionId)
 
-    fun getQuestionList(userId: Long, nextId: Long?, size: Int): List<QuestionDto> =
+    fun getQuestionList(userId: Long, nextId: Int?, size: Int): List<QuestionDto> =
         questionRepository.getQuestionList(userId, nextId, size)
 
 //    private fun search(kw: String): Specification<Question> {
@@ -59,7 +59,7 @@ class ReadQuestionService (
     fun findByIdOrThrow(questionId: Long): Question {
         return questionRepository.findById(questionId)
             .orElseThrow {
-                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", postingId.toString()))
+                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", questionId.toString()))
             }
     }
 }
