@@ -24,7 +24,7 @@ class ReadQuestionService (
          */
         questionRepository.getQuestion(userId, questionId)
 
-    fun getQuestionList(userId: Long, nextId: Int?, size: Int): List<QuestionDto> =
+    fun getQuestionList(userId: Long, nextId: Long?, size: Long): List<QuestionDto> =
         questionRepository.getQuestionList(userId, nextId, size)
 
 //    private fun search(kw: String): Specification<Question> {

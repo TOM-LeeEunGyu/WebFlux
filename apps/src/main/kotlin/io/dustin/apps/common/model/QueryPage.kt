@@ -5,21 +5,21 @@ import org.springframework.data.domain.Sort
 
 class QueryPage (
 
-    val page: Int? = null,
-    val nextId: Int? = null,
+    val page: Long? = null,
+    val nextId: Long? = null,
     val column: String? = null,
     val sort: Sort.Direction? = null,
-    val size: Int,
+    val size: Long,
 
 ) {
 
-    fun offset(): Int {
+    fun offset(): Long {
 
         // null이 아니라면 -1 빼고 아니면 0
         return page?.minus(1) ?: 0
     }
 
-    fun limit(): Int {
+    fun limit(): Long {
         return size
     }
 
@@ -28,6 +28,6 @@ class QueryPage (
         if (column != null && sort != null) {
             resultSort = Sort.by(sort, column)
         }
-        return PageRequest.of(offset(), limit(), resultSort)
+        return PageRequest.of(offset().toInt(), limit().toInt(), resultSort)
     }
 }
