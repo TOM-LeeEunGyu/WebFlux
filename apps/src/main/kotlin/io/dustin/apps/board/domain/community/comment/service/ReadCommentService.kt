@@ -2,7 +2,10 @@ package io.dustin.apps.board.domain.community.comment.service
 
 import io.dustin.apps.board.domain.community.comment.model.Comment
 import io.dustin.apps.board.domain.community.comment.repository.CommentRepository
+import io.dustin.apps.board.domain.qna.answer.model.Answer
 import io.dustin.apps.common.exception.DataNotFoundException
+import io.dustin.apps.common.repository.findByIdOrThrow
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -16,14 +19,11 @@ class ReadCommentService (
     fun replyListByComment(userId: Long, commentId: Long, size: Long, nextId: Long?) =
         commentRepository.replyListByComment(userId, commentId, size, nextId)
 
-    fun findById(commentId: Long): Comment? {
-        return commentRepository.findById(commentId).orElse(null)
+    fun findByIdOrNull(commentId: Long): Comment? {
+        return commentRepository.findByIdOrNull(commentId)
     }
 
     fun findByIdOrThrow(commentId: Long): Comment {
-        return commentRepository.findById(commentId)
-            .orElseThrow {
-                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", commentId.toString()))
-            }
+        return commentRepository.findByIdOrThrow(commentId)
     }
 }

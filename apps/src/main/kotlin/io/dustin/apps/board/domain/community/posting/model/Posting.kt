@@ -22,8 +22,6 @@ class Posting(
     @Column(name = "is_deleted")
     var isDeleted: YesOrNo = YesOrNo.N,
 
-
-
     var userId: Long
 
 ) : BaseEntity() {

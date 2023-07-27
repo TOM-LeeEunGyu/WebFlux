@@ -2,7 +2,10 @@ package io.dustin.apps.board.domain.qna.answer.service
 
 import io.dustin.apps.board.domain.qna.answer.model.Answer
 import io.dustin.apps.board.domain.qna.answer.repository.AnswerRepository
+import io.dustin.apps.board.domain.qna.question.model.Question
 import io.dustin.apps.common.exception.DataNotFoundException
+import io.dustin.apps.common.repository.findByIdOrThrow
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -16,15 +19,12 @@ class ReadAnswerService(
         answerRepository.findByQuestionId(questionId)
 
 
-    fun findById(postingId: Long): Answer {
-        return answerRepository.findById(postingId).orElse(null)
+    fun findByIdOrNull(answerId: Long): Answer? {
+        return answerRepository.findByIdOrNull(answerId)
     }
 
-    fun findByIdOrThrow(postingId: Long): Answer {
-        return answerRepository.findById(postingId)
-            .orElseThrow {
-                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", postingId.toString()))
-            }
+    fun findByIdOrThrow(answerId: Long): Answer {
+        return answerRepository.findByIdOrThrow(answerId)
     }
 }
 

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 class ReadPostingService (
     private val postingRepository: PostingRepository
 ) {
-    fun TestfindAll() =
+    fun TestFindAll() =
         postingRepository.findAll()
 
     fun getPosting(userId: Long, postingId: Long) =

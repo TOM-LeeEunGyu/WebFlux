@@ -43,7 +43,7 @@ class CustomQuestionRepositoryImpl(private val query: JPAQueryFactory) : CustomQ
         return jPAQuery.fetchOne()
     }
 
-    override fun getQuestionList(userId: Long, nextId: Long?, size: Int): List<QuestionDto> {
+    override fun getQuestionList(userId: Long, nextId: Long?, size: Long): List<QuestionDto> {
         val question = QQuestion.question
         val answer = QAnswer.answer
 

@@ -6,5 +6,5 @@ import java.util.*
 
 interface BookmarkRepository : BaseRepository<Bookmark, Long> {
     fun deleteByUserIdAndBoardId(userId: Long, boardId: Long)
-    fun findByUserIdAndBoardId(userId: Long, boardId: Long): Bookmark?
+    fun findByUserIdAndBoardId(userId: Long, boardId: Long): Bookmark
 }

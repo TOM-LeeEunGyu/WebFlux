@@ -14,7 +14,7 @@ class DeleteAnswerUseCase(
 ) {
     @Transactional
     fun execute(adminId: Long, answerId: Long): AnswerDto {
-        val answer = readAnswerService.findById(answerId) ?: throw DataNotFoundException("조회된 데이터가 없습니다.")
+        val answer = readAnswerService.findByIdOrThrow(answerId)
         writeAnswerService.delete(answer)
         return AnswerDto.from(answer)
     }

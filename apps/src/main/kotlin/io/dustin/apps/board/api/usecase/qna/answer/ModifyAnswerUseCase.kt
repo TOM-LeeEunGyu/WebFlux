@@ -15,7 +15,7 @@ class ModifyAnswerUseCase (
 ) {
     @Transactional
     fun execute(adminId: Long, answerId: Long, content: String): AnswerDto {
-        val answer = readAnswerService.findById(answerId) ?: throw DataNotFoundException("데이터가 없습니다.")
+        val answer = readAnswerService.findByIdOrThrow(answerId)
         writeAnswerService.updateContent(answer, content)
         return AnswerDto.from(answer)
     }

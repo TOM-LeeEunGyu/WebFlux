@@ -1,13 +1,16 @@
 package io.dustin.apps.board.domain.qna.question.service
 
+import io.dustin.apps.board.domain.community.posting.model.Posting
 import io.dustin.apps.board.domain.qna.question.model.Question
 import io.dustin.apps.board.domain.qna.question.model.dto.QuestionDto
 import io.dustin.apps.board.domain.qna.question.repository.QuestionRepository
 import io.dustin.apps.common.exception.DataNotFoundException
+import io.dustin.apps.common.repository.findByIdOrThrow
 import jakarta.persistence.criteria.Join
 import jakarta.persistence.criteria.Predicate
 import jakarta.persistence.criteria.Root
 import org.springframework.data.jpa.domain.Specification
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -52,14 +55,11 @@ class ReadQuestionService (
 //        }
 //    }
 
-    fun findById(questionId: Long): Question {
-        return questionRepository.findById(questionId).orElse(null)
+    fun findByIdOrNull(questionId: Long): Question? {
+        return questionRepository.findByIdOrNull(questionId)
     }
 
     fun findByIdOrThrow(questionId: Long): Question {
-        return questionRepository.findById(questionId)
-            .orElseThrow {
-                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", questionId.toString()))
-            }
+        return questionRepository.findByIdOrThrow(questionId)
     }
 }

@@ -14,7 +14,7 @@ class DeleteQuestionUseCase (
 ) {
     @Transactional
     fun execute(userId: Long, questionId: Long): QuestionDto {
-        val question = readQuestionService.findById(questionId) ?: throw DataNotFoundException("없는 데이터입니다.")
+        val question = readQuestionService.findByIdOrThrow(questionId)
         writeQuestionService.delete(question)
         return QuestionDto.from(question)
     }

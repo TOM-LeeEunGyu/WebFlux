@@ -23,7 +23,7 @@ class CustomPostingRepositoryImpl(
     private val readFollowService: ReadFollowService
 ) : CustomPostingRepository {
 
-    override fun getPosting(userId: Long, postingId: Long): PostingDto? {
+    override fun getPosting(userId: Long, postingId: Long): PostingDto {
         val selectedPosting = query.selectFrom(posting).where(posting.id.eq(postingId)).fetchOne()
         val postingAuthorId = selectedPosting?.userId ?: 0L
 
@@ -66,7 +66,7 @@ class CustomPostingRepositoryImpl(
                 posting.id.eq(postingId)
             )
 
-        return jPAQuery.fetchOne()
+        return jPAQuery.fetchOne() ?: throw DataNotFoundException("데이터가 없습니다.")
     }
 
     override fun getPostingList(userId: Long, nextId: Long?, size: Long): List<PostingListDto> {
@@ -116,7 +116,7 @@ class CustomPostingRepositoryImpl(
         return jPAQuery.fetch()
     }
 
-    override fun getMyPosting(userId: Long, postingId: Long): PostingDto? {
+    override fun getMyPosting(userId: Long, postingId: Long): PostingDto {
         val isMyPosting = true
 
         val jPAQuery = query.select(
@@ -152,7 +152,7 @@ class CustomPostingRepositoryImpl(
                 posting.userId.eq(userId)
             )
 
-        return jPAQuery.fetchOne()
+        return jPAQuery.fetchOne() ?: throw DataNotFoundException("데이터가 없습니다.")
     }
 
     override fun getMyPostingList(userId: Long, nextId: Long?, size: Long): List<PostingListDto> {

@@ -1,4 +1,4 @@
-package io.medium.poc.common.cache
+package io.dustin.apps.common.cache
 
 import io.dustin.apps.board.domain.community.posting.model.dto.PostingDto
 import io.dustin.apps.common.utils.dataNotFound

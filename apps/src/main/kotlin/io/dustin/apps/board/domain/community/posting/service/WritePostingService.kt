@@ -3,6 +3,8 @@ package io.dustin.apps.board.domain.community.posting.service
 import io.dustin.apps.board.domain.community.posting.model.Posting
 import io.dustin.apps.board.domain.community.posting.repository.PostingRepository
 import io.dustin.apps.common.exception.DataNotFoundException
+import io.dustin.apps.common.repository.findByIdOrThrow
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -38,33 +40,27 @@ class WritePostingService (
         posting.updateCommentCount(commentCount)
     }
     fun commentUnCount(postingId: Long) {
-        println("게시물 id : [$postingId] 댓글 수 감소")
         val posting: Posting = findByIdOrThrow(postingId)
         val commentCount: Long = posting.commentCount - 1
         posting.updateLikeCount(commentCount)
     }
 
     fun likeCount(postingId: Long) {
-        println("게시물 id : [$postingId] 좋아요 증가")
         val posting: Posting = findByIdOrThrow(postingId)
         val likeCount: Long = posting.likeCount + 1
         posting.updateLikeCount(likeCount)
     }
     fun likeUnCount(postingId: Long) {
-        println("게시물 id : [$postingId] 좋아요 감소")
         val posting: Posting = findByIdOrThrow(postingId)
         val likeCount: Long = posting.likeCount - 1
         posting.updateLikeCount(likeCount)
     }
 
-    fun findById(postingId: Long): Posting {
-        return postingRepository.findById(postingId).orElse(null)
+    fun findByIdOrNull(postingId: Long): Posting? {
+        return postingRepository.findByIdOrNull(postingId)
     }
 
     fun findByIdOrThrow(postingId: Long): Posting {
-        return postingRepository.findById(postingId)
-            .orElseThrow {
-                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", postingId.toString()))
-            }
+        return postingRepository.findByIdOrThrow(postingId)
     }
 }
