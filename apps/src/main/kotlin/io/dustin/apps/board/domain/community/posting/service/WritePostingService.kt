@@ -21,9 +21,9 @@ class WritePostingService (
         postingRepository.save(posting)
         return posting
     }
-    fun updateContent(posting: Posting, subject: String, content: String) {
-        posting.updateSubject(subject)
-        posting.updateContent(content)
+    fun updateContent(posting: Posting, subject: String?, content: String?) {
+        subject?.let { posting.updateSubject(subject) }
+        content?.let { posting.updateSubject(content) }
         postingRepository.save(posting)
     }
     fun delete(posting: Posting) {

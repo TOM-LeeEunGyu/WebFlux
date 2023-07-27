@@ -18,7 +18,7 @@ class ModifyPostingUseCase (
 ) {
 
     @Transactional
-    fun execute(userId: Long, postingId: Long, subject: String, content: String): PostingDto {
+    fun execute(userId: Long, postingId: Long, subject: String?, content: String?): PostingDto {
         val posting: Posting = readPostingService.findByIdOrThrow(postingId)
         if (posting.userId != userId) {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.")

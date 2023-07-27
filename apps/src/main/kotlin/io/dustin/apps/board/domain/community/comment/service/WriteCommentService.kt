@@ -10,7 +10,7 @@ import java.util.*
 class WriteCommentService (
     private val commentRepository: CommentRepository
 ) {
-    fun create(userId: Long, postingId: Long, replyId: Long, content: String): Comment {
+    fun create(userId: Long, postingId: Long, replyId: Long?, content: String): Comment {
         val comment = Comment(
             userId = userId,
             postingId =  postingId,

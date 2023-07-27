@@ -15,8 +15,7 @@ abstract class BaseEntity {
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
-    var createdAt: LocalDateTime = now()
-        private set
+    open var createdAt: LocalDateTime = now()
 
     @Column(name = "updated_at", nullable = true, updatable = false)
     var updatedAt: LocalDateTime? = null

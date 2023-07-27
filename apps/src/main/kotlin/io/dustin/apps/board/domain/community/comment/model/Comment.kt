@@ -22,7 +22,7 @@ class Comment (
 
     val userId: Long,
 
-    val replyId: Long?,
+    val replyId: Long? = null,
 
     val postingId: Long,
 

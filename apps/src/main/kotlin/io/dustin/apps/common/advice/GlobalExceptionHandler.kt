@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import org.springframework.web.server.ResponseStatusException
 import java.time.LocalDateTime.now
 
 
@@ -32,10 +33,21 @@ class GlobalExceptionHandler {
         )
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ResponseStatusException::class)
+    fun handleBadRequestParameterException(e: ResponseStatusException): ApiError {
+        return ApiError(
+            status = HttpStatus.BAD_REQUEST.value(),
+            message = e.message,
+            timestamp = SelectDate.TYPE_FOUR.transform(now())
+        )
+    }
+
     data class ApiError(
         val status: Int,
         val message: String?,
         val timestamp: String?
     )
 }
+
 

@@ -13,7 +13,7 @@ class WriteCommentUseCase (
     private val writePostingService: WritePostingService
 
 ) {
-    fun execute(userId: Long, postingId: Long, reply: Long, content: String): CommentDto {
+    fun execute(userId: Long, postingId: Long, reply: Long?, content: String): CommentDto {
         val comment: Comment = writeCommentService.create(userId, postingId, reply, content)
         writePostingService.commentCount(postingId)
         return CommentDto.from(comment)
