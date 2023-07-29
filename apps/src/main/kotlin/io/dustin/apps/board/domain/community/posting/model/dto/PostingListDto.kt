@@ -10,13 +10,12 @@ data class PostingListDto(
     val userId: Long,
     val subject: String,
     val content: String,
-    val isLike: Boolean,
-    val isBookmark: Boolean,
-    val commentCnt: Long,
-    val clickCnt: Long,
-    val likeCount: Long,
+    var isLike: Boolean,
+    var isBookmark: Boolean,
+    var commentCnt: Long,
+    var clickCnt: Long,
+    var likeCount: Long,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
-    var updatedAt: LocalDateTime? = null,
 ) : IdAble {
     companion object {
         fun from(posting: Posting) =  with(posting) {
@@ -31,7 +30,6 @@ data class PostingListDto(
                 clickCnt = 0, // Set default value for clickCnt
                 likeCount = 0, // Set default value for likeCount
                 createdAt = createdAt,
-                updatedAt = updatedAt
 
             )
         }

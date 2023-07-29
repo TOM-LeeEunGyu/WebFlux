@@ -1,5 +1,6 @@
 package io.dustin.apps.board.api.community
 
+import io.dustin.apps.board.api.community.request.command.CommentCreateCommand
 import io.dustin.apps.board.api.usecase.community.comment.DeleteCommentUseCase
 import io.dustin.apps.board.api.usecase.community.comment.ModifyCommentUseCase
 import io.dustin.apps.board.api.usecase.community.comment.ReadCommentUseCase
@@ -39,38 +40,35 @@ class CommentController (
     @PostMapping("/posting/{postingId}")
     fun createComment(
         @PathVariable("postingId") postingId: Long,
-        @RequestBody commentDto: CommentDto
+        @RequestBody command: CommentCreateCommand
     ): CommentDto {
-        if (commentDto.content == null) {
+        if (command.content == null) {
             throw BadRequestParameterException("댓글 내용은 필수항목입니다.")
         }
         /**
          * 해당 게시물에 댓글 수 증가로직 추가
          */
-        return writeCommentUseCase.execute(commentDto.userId, postingId, commentDto.replyId, commentDto.content)
+        return writeCommentUseCase.execute(command.userId, postingId, command.replyId, command.content)
     }
 
     //@PreAuthorize("isAuthenticated()")
     @PatchMapping("/{commentId}")
     fun modifyComment(
         @PathVariable("commentId") commentId: Long,
-        @RequestBody commentDto: CommentDto
+        @RequestBody command: CommentCreateCommand
     ): CommentDto {
-        if (commentDto.content == null) {
+        if (command.content == null) {
             throw BadRequestParameterException("댓글 내용은 필수항목입니다.")
         }
-        return modifyCommentUseCase.execute(commentDto.userId, commentId, commentDto.content)
+        return modifyCommentUseCase.execute(command.userId, commentId, command.content)
     }
 
     //@PreAuthorize("isAuthenticated()")
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping("/{commentId}/user/{userId}")
     fun deleteComment(
         @PathVariable("commentId") commentId: Long,
-        @RequestBody commentDto: CommentDto
+        @PathVariable("userId") userId: Long,
     ): CommentDto {
-        /**
-         * 해당 게시물에 댓글 수 감소로직 추가
-         */
-        return deleteCommentUseCase.execute(commentDto.userId, commentDto.postingId, commentId)
+        return deleteCommentUseCase.execute(userId, commentId)
     }
 }

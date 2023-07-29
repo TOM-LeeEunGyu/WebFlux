@@ -1,4 +1,4 @@
-package io.dustin.apps.board.api.community.request
+package io.dustin.apps.board.api.community.request.command
 
 data class PostingUpdateCommand(
     val userId: Long,

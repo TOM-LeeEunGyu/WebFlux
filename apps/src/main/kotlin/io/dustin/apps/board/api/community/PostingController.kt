@@ -1,7 +1,7 @@
 package io.dustin.apps.board.api.community
 
-import io.dustin.apps.board.api.community.request.PostingCreateCommand
-import io.dustin.apps.board.api.community.request.PostingUpdateCommand
+import io.dustin.apps.board.api.community.request.command.PostingCreateCommand
+import io.dustin.apps.board.api.community.request.command.PostingUpdateCommand
 import io.dustin.apps.board.api.usecase.community.posting.DeletePostingUseCase
 import io.dustin.apps.board.api.usecase.community.posting.ModifyPostingUseCase
 import io.dustin.apps.board.api.usecase.community.posting.ReadPostingUseCase

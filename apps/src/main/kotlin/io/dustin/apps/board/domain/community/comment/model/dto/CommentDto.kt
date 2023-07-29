@@ -8,22 +8,28 @@ import java.time.LocalDateTime
 
 data class CommentDto(
     val id: Long,
+    @JsonIgnore
+    val posting: Posting?,
     val content: String,
+    var isLike: Boolean,
+    var isReply: Boolean,
     val userId: Long,
     val postingId: Long,
-    val replyId: Long?,
+    var replyId: Long? = null,
     val createdAt: LocalDateTime
 ) : IdAble {
 
-    var isLike: Boolean = false
-    var isReply: Boolean = false
+
 
     // 주석 처리 및 중복된 프로퍼티 제거
     companion object {
         fun from(comment: Comment) = with(comment) {
             CommentDto(
                 id = id ?: 0L,
+                posting = null,
                 content = content,
+                isLike = false,
+                isReply = false,
                 userId = userId,
                 postingId = postingId,
                 replyId = replyId,

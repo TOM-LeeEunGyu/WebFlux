@@ -7,7 +7,7 @@ import java.time.LocalDateTime.now
 
 data class PostingDto(
     val id: Long,
-    var userId: Long,
+    val userId: Long,
     val subject: String,
     val content: String,
     var isLike: Boolean,
@@ -19,7 +19,6 @@ data class PostingDto(
     var clickCnt: Long,
     var likeCount: Long,
     val createdAt: LocalDateTime = now(),
-    var updatedAt: LocalDateTime? = null,
 
     ): IdAble {
 
@@ -39,7 +38,6 @@ data class PostingDto(
                 clickCnt = 0,
                 likeCount = 0,
                 createdAt = createdAt,
-                updatedAt = updatedAt
             )
         }
     }

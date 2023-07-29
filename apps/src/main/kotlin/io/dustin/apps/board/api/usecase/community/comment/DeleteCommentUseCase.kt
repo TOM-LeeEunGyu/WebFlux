@@ -19,13 +19,13 @@ class DeleteCommentUseCase (
 ) {
 
     @Transactional
-    fun execute(userId: Long, postingId: Long, commentId: Long): CommentDto {
+    fun execute(userId: Long, commentId: Long): CommentDto {
         val comment: Comment = readCommentService.findByIdOrThrow(commentId)
         if (comment.userId != userId) {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.")
         }
         writeCommentService.delete(comment)
-        writePostingService.commentUnCount(postingId)
+        writePostingService.commentUnCount(comment.postingId)
         return CommentDto.from(comment)
     }
 }

@@ -25,7 +25,7 @@ class CustomPostingRepositoryImpl(
 
     override fun getPosting(userId: Long, postingId: Long): PostingDto {
         val selectedPosting = query.selectFrom(posting).where(posting.id.eq(postingId)).fetchOne()
-        val postingAuthorId = selectedPosting?.userId ?: 0L
+        val postingAuthorId = selectedPosting?.userId ?: throw DataNotFoundException("데이터가 없습니다.")
 
         val followingIds = readFollowService.followingIds(postingAuthorId)
         val isFollowing = followingIds.contains(userId)
