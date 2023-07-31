@@ -5,7 +5,6 @@ import jakarta.persistence.*
 import org.hibernate.annotations.DynamicUpdate
 
 @Entity
-@DynamicUpdate
 class Bookmark (
 
     @Id

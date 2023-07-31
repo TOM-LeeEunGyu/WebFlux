@@ -1,5 +1,7 @@
 package io.dustin.apps.board.api.bookmark
 
+import io.dustin.apps.board.api.bookmark.request.command.BookmarkCreateCommand
+import io.dustin.apps.board.api.bookmark.request.command.BookmarkDeleteCommand
 import io.dustin.apps.board.api.usecase.bookmark.DeleteBookmarkUseCase
 import io.dustin.apps.board.api.usecase.bookmark.WriteBookmarkUseCase
 import io.dustin.apps.board.domain.bookmark.model.dto.BookMarkDto
@@ -15,12 +17,12 @@ class BookmarkController (
 ) {
 
     @PostMapping("/bookmarks/add")
-    fun add(@RequestBody bookMarkDto: BookMarkDto): BookMarkDto {
-        return writeBookmarkUseCase.execute(bookMarkDto.userId, bookMarkDto.boardId)
+    fun add(@RequestBody command: BookmarkCreateCommand): BookMarkDto {
+        return writeBookmarkUseCase.execute(command.userId, command.boardId)
     }
 
     @DeleteMapping("/bookmarks/cancel")
-    fun cancel(@RequestBody bookMarkDto: BookMarkDto): BookMarkDto {
-        return deleteBookmarkUseCase.execute(bookMarkDto.userId, bookMarkDto.boardId)
+    fun cancel(@RequestBody command: BookmarkDeleteCommand): BookMarkDto {
+        return deleteBookmarkUseCase.execute(command.userId, command.boardId)
     }
 }

@@ -25,9 +25,26 @@ spring:
       #       ddl-auto: create
       ddl-auto: update
 
+# logging
+logging:
+  level:
+    root: INFO
+    org:
+      springframework: INFO
+    io:
+      medium:
+        poc: INFO
 
 server:
   error:
     whitelabel:
       enabled: false
   port: 8881
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /dustin
+    defaultModelsExpandDepth: -1
+    tagsSorter: alpha
