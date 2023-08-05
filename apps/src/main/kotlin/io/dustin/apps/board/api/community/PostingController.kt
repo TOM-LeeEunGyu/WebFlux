@@ -10,6 +10,7 @@ import io.dustin.apps.board.domain.community.posting.model.dto.PostingDetailDto
 import io.dustin.apps.board.domain.community.posting.model.dto.PostingDto
 import io.dustin.apps.common.model.QueryPage
 import io.dustin.apps.common.model.ResponseWithScroll
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -34,14 +35,14 @@ class PostingController (
     }
 
     @PostMapping("/create")
-    fun createPosting(@RequestBody command: PostingCreateCommand): PostingDto {
+    fun createPosting(@RequestBody @Valid command: PostingCreateCommand): PostingDto {
         return writePostingUseCase.execute(command.userId, command.subject, command.content)
     }
 
     @PatchMapping("/{postingId}")
     fun modifyPosting(
         @PathVariable("postingId") postingId: Long,
-        @RequestBody command: PostingUpdateCommand,
+        @RequestBody @Valid command: PostingUpdateCommand,
     ): PostingDto {
         command.checkAssignment()
         return modifyPostingUseCase.execute(command.userId, postingId, command.subject, command.content)

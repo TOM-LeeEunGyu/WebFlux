@@ -9,6 +9,7 @@ import io.dustin.apps.board.domain.community.comment.model.dto.CommentDto
 import io.dustin.apps.common.exception.BadRequestParameterException
 import io.dustin.apps.common.model.QueryPage
 import io.dustin.apps.common.model.ResponseWithScroll
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 
@@ -40,7 +41,7 @@ class CommentController (
     @PostMapping("/posting/{postingId}")
     fun createComment(
         @PathVariable("postingId") postingId: Long,
-        @RequestBody command: CommentCreateCommand
+        @RequestBody @Valid command: CommentCreateCommand
     ): CommentDto {
         if (command.content == null) {
             throw BadRequestParameterException("댓글 내용은 필수항목입니다.")
@@ -55,7 +56,7 @@ class CommentController (
     @PatchMapping("/{commentId}")
     fun modifyComment(
         @PathVariable("commentId") commentId: Long,
-        @RequestBody command: CommentCreateCommand
+        @RequestBody @Valid command: CommentCreateCommand
     ): CommentDto {
         if (command.content == null) {
             throw BadRequestParameterException("댓글 내용은 필수항목입니다.")
