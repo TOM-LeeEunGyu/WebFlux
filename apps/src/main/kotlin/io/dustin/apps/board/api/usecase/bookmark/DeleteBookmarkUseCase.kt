@@ -15,7 +15,7 @@ class DeleteBookmarkUseCase (
 ) {
     @Transactional
     fun execute(userId: Long, boardId: Long): BookMarkDto {
-        val bookmark = readBookmarkService.getBookmark(userId, boardId) ?: throw DataNotFoundException("존재하지 않는 데이터입다.")
+        val bookmark = readBookmarkService.getBookmark(userId, boardId)
         writeBookmarkService.delete(userId, boardId)
         return BookMarkDto.from(bookmark)
     }

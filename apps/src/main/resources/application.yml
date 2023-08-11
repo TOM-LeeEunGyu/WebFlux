@@ -48,3 +48,11 @@ springdoc:
     path: /dustin
     defaultModelsExpandDepth: -1
     tagsSorter: alpha
+
+feign:
+  client:
+    config:
+      test:
+        connectTimeout: 10000 # 10?
+        readTimeout: 10000 # 10?
+        url: http://localhost:8088/api/v1/feign
