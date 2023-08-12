@@ -8,10 +8,14 @@ import io.dustin.apps.board.api.usecase.community.posting.ReadPostingUseCase
 import io.dustin.apps.board.api.usecase.community.posting.WritePostingUseCase
 import io.dustin.apps.board.domain.community.posting.model.dto.PostingDetailDto
 import io.dustin.apps.board.domain.community.posting.model.dto.PostingDto
+import io.dustin.apps.common.code.CommonMessage
 import io.dustin.apps.common.model.QueryPage
 import io.dustin.apps.common.model.ResponseWithScroll
+import io.dustin.apps.common.model.response.CommonResponse
 import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api/v1/posting")
@@ -35,8 +39,13 @@ class PostingController (
     }
 
     @PostMapping("/create")
-    fun createPosting(@RequestBody @Valid command: PostingCreateCommand): PostingDto {
-        return writePostingUseCase.execute(command.userId, command.subject, command.content)
+    fun createPosting(@RequestBody @Valid command: PostingCreateCommand): CommonResponse {
+        writePostingUseCase.execute(command.userId, command.subject, command.content)
+        return CommonResponse(
+            code = HttpStatus.OK.value(),
+            message = CommonMessage.SUCCESS.code,
+            timestamp = LocalDateTime.now()
+        )
     }
 
     @PatchMapping("/{postingId}")

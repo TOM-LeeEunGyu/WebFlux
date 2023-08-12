@@ -17,13 +17,13 @@ class WritePostingUseCase (
 
 ) {
     @Transactional
-    fun execute(userId: Long, subject: String, content: String): PostingDto {
+    fun execute(userId: Long, subject: String, content: String) {
         val posting: Posting = writePostingService.create(userId, subject, content)
-        return PostingDto.from(posting)
 
 
         try {
             val callResponse = testCall.feignTest("테스트중!")
+            println("이것이 나오면 성공한것 !")
             if(callResponse.code != HttpStatus.OK.value()) {
                 throw FeignClientErrorException("데이터 전달중 장애가 발생했습니다.")
             }

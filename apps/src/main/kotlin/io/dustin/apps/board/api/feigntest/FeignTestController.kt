@@ -27,7 +27,7 @@ class FeignTestController (
 
     @Hidden
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/test")
+    @PostMapping("/test")
     fun feignTest(): CommonResponse {
 
         try {

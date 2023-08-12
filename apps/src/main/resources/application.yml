@@ -32,8 +32,8 @@ logging:
     org:
       springframework: INFO
     io:
-      medium:
-        poc: INFO
+      dustin:
+        apps: INFO
 
 server:
   error:
@@ -55,4 +55,4 @@ feign:
       test:
         connectTimeout: 10000 # 10?
         readTimeout: 10000 # 10?
-        url: http://localhost:8088/api/v1/feign
+        url: http://localhost:8881/api/v1/feign
