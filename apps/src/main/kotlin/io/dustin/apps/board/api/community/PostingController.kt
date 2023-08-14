@@ -12,6 +12,7 @@ import io.dustin.apps.common.code.CommonMessage
 import io.dustin.apps.common.model.QueryPage
 import io.dustin.apps.common.model.ResponseWithScroll
 import io.dustin.apps.common.model.response.CommonResponse
+import io.dustin.apps.common.model.response.ResultResponse
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*

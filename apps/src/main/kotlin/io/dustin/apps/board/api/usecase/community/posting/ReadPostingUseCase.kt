@@ -11,6 +11,7 @@ import io.dustin.apps.board.domain.community.posting.service.WritePostingService
 import io.dustin.apps.common.model.CountByPagingInfo
 import io.dustin.apps.common.model.QueryPage
 import io.dustin.apps.common.model.ResponseWithScroll
+import io.dustin.apps.common.model.response.ResultResponse
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -39,6 +40,7 @@ class ReadPostingUseCase (
         writePostingService.click(postingId)
         val posting: PostingDto = readPostingService.getPosting(userId, postingId)
         val commentList: ResponseWithScroll<List<CommentDto>> = readCommentUseCase.execute(postingId, queryPage)
-        return PostingDetailDto.from(posting, commentList)
+        val result = PostingDetailDto.from(posting, commentList)
+        return result
     }
 }
