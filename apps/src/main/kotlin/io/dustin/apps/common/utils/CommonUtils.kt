@@ -28,3 +28,10 @@ fun toJson(any: Any): String = mapper.writeValueAsString(any)
  * @return T
  */
 fun <T> toObject(json: String, valueType: Class<T>): T = mapper.readValue(json, valueType)
+
+/**
+ * 컬렉션의 마지막 요소를 가져온다.
+ */
+fun <T> List<T>.lastAt(): T {
+    return this[this.size - 1]
+}

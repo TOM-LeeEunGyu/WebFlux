@@ -19,7 +19,6 @@ abstract class BaseEntity {
 
     @Column(name = "updated_at", nullable = true, updatable = false)
     var updatedAt: LocalDateTime? = null
-        private set
 
     @PreUpdate
     fun onUpdatedAt() {

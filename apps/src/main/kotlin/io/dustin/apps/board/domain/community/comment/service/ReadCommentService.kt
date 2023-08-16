@@ -13,11 +13,11 @@ class ReadCommentService (
     private val commentRepository: CommentRepository
 ) {
 
-    fun getCommentsByPosting(userId: Long, postingId: Long, size: Long, nextId: Long?) =
-        commentRepository.commentListByPosting(userId, postingId, size, nextId)
+    fun getCommentsByPosting(userId: Long, postingId: Long, recordsCount: Long, nextId: Long?) =
+        commentRepository.commentListByPosting(userId, postingId, recordsCount, nextId)
 
-    fun replyListByComment(userId: Long, commentId: Long, size: Long, nextId: Long?) =
-        commentRepository.replyListByComment(userId, commentId, size, nextId)
+    fun replyListByComment(userId: Long, commentId: Long, recordsCount: Long, nextId: Long?) =
+        commentRepository.replyListByComment(userId, commentId, recordsCount, nextId)
 
     fun findByIdOrNull(commentId: Long): Comment? {
         return commentRepository.findByIdOrNull(commentId)

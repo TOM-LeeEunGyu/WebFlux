@@ -19,8 +19,8 @@ class ReadPostingService (
         postingRepository.getPosting(userId, postingId)
 
 
-    fun getPostingList(userId: Long, nextId: Long?, size: Long) =
-        postingRepository.getPostingList(userId, nextId, size)
+    fun getPostingList(userId: Long, recordsCount: Long, nextId: Long?) =
+        postingRepository.getPostingList(userId, recordsCount, nextId)
 
 
     fun useCase(id: Long) {

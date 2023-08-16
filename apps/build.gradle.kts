@@ -7,6 +7,9 @@ plugins {
 	kotlin("kapt") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
+	kotlin("plugin.noarg") version "1.8.22"
+	kotlin("plugin.allopen") version "1.8.22"
+
 }
 
 group = "io.dustin"
@@ -29,8 +32,10 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.4")
 
@@ -60,6 +65,19 @@ dependencies {
 		exclude(module = "junit-vintage-engine")
 	}
 }
+
+noArg {
+	annotation("jakarta.persistence.Entity")
+	annotation("jakarta.persistence.MappedSuperclass")
+	annotation("jakarta.persistence.Embeddable")
+}
+
+allOpen {
+	annotation("jakarta.persistence.Entity")
+	annotation("jakarta.persistence.MappedSuperclass")
+	annotation("jakarta.persistence.Embeddable")
+}
+
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {

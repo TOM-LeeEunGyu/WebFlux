@@ -69,18 +69,20 @@ class CustomPostingRepositoryImpl(
         return jPAQuery.fetchOne() ?: throw DataNotFoundException("데이터가 없습니다.")
     }
 
-    override fun getPostingList(userId: Long, nextId: Long?, size: Long): List<PostingListDto> {
+    override fun getPostingList(userId: Long,
+                                recordsCount: Long,
+                                nextId: Long?): List<PostingListDto> {
         val booleanBuilder = BooleanBuilder()
-        nextId?.let {
-            booleanBuilder.and(posting.id.lt(it))
-        }
-
         val toUserIds = readBlockedUserService.toUserIds(userId)
         val fromUserIds = readBlockedUserService.fromUserIds(userId)
 
         booleanBuilder.and(posting.userId.notIn(toUserIds).and(posting.userId.notIn(fromUserIds)))
-
-        val jPAQuery = query.select(
+        nextId?.let {
+            if(it != null){
+                booleanBuilder.and(posting.id.lt(it))
+            }
+        }
+        return  query.select(
             constructor(
                 PostingListDto::class.java,
                 posting.id,
@@ -111,9 +113,8 @@ class CustomPostingRepositoryImpl(
                 posting.userId.ne(userId)
             )
             .orderBy(posting.id.desc())
-            .limit(size)
-
-        return jPAQuery.fetch()
+            .limit(recordsCount + 1)
+            .fetch()
     }
 
     override fun getMyPosting(userId: Long, postingId: Long): PostingDto {

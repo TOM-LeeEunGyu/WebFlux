@@ -24,13 +24,13 @@ class CommentController (
 
     ) {
 
-    @GetMapping("/{postingId}/all")
-    fun commentListByPosting(
-        @PathVariable("postingId") postingId: Long,
-        queryPage: QueryPage
-    ): ResponseWithScroll<*> {
-        return readCommentUseCase.execute(postingId, queryPage)
-    }
+//    @GetMapping("/{postingId}/all")
+//    fun commentListByPosting(
+//        @PathVariable("postingId") postingId: Long,
+//        queryPage: QueryPage
+//    ): ResponseWithScroll<*> {
+//        return readCommentUseCase.execute(postingId, queryPage)
+//    }
 
     @GetMapping("/{commentId}")
     fun replyListByComment(@PathVariable("commentId") commentId: Long, queryPage: QueryPage): ResponseWithScroll<*> {

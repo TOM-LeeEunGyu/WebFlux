@@ -16,7 +16,7 @@ import io.dustin.apps.common.model.extension.CommentExtension
 
 class CustomCommentRepositoryImpl(private val query: JPAQueryFactory) : CustomCommentRepository {
 
-    override fun commentListByPosting(userId: Long, postingId: Long, size: Long, nextId: Long?): List<CommentDto> {
+    override fun commentListByPosting(userId: Long, postingId: Long, recordsCount: Long, nextId: Long?): List<CommentDto> {
         val self = QComment("self")
         val jPAQuery: JPAQuery<CommentDto> = query.select(
             constructor(
@@ -47,11 +47,11 @@ class CustomCommentRepositoryImpl(private val query: JPAQueryFactory) : CustomCo
                 comment.indexByCountPagination(nextId)
             )
             .orderBy(comment.id.desc())
-            .limit(size)
+            .limit(recordsCount+1)
         return jPAQuery.fetch()
     }
 
-    override fun replyListByComment(userId: Long, commentId: Long, size: Long, nextId: Long?): List<CommentDto> {
+    override fun replyListByComment(userId: Long, commentId: Long, recordsCount: Long, nextId: Long?): List<CommentDto> {
         val builder = CommentExtension.indexByCountPagination(comment, nextId)
         val self = QComment("self")
         val jPAQuery: JPAQuery<CommentDto> = query.select(
@@ -82,7 +82,7 @@ class CustomCommentRepositoryImpl(private val query: JPAQueryFactory) : CustomCo
                 builder
             )
             .orderBy(comment.id.desc())
-            .limit(size)
+            .limit(recordsCount+1)
         return jPAQuery.fetch()
     }
 }
