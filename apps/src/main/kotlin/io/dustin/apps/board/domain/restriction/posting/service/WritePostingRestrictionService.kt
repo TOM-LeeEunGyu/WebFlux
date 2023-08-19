@@ -9,6 +9,9 @@ class WritePostingRestrictionService(
     private val postingRestrictionRepository: PostingRestrictionRepository
 ) {
 
+    /**
+     * 유저 제한
+     */
     fun create(fromUserId: Long, toUserId: Long, postingId: Long): PostingRestriction {
         val postingRestriction = PostingRestriction(
             fromUserId = fromUserId,
@@ -19,7 +22,10 @@ class WritePostingRestrictionService(
         return postingRestriction
     }
 
+    /**
+     * 유저 제한 해제
+     */
     fun delete(fromUserId: Long, toUserId: Long, postingId: Long) {
-        postingRestrictionRepository.deleteByFromUserIdAndToUserIdAndPostingId(fromUserId, toUserId, postingId)
+        postingRestrictionRepository.deleteByUsers(fromUserId, toUserId, postingId)
     }
 }

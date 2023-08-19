@@ -1,21 +1,24 @@
 package io.dustin.apps.common.utils
 
 import io.dustin.apps.common.exception.DataNotFoundException
+import io.dustin.apps.common.exception.NotFoundEntityException
 
 /**
- * id로 조회된 entity가 없을 경우
+ * 메세지가 없는 경우
  */
-fun dataNotFound(): Nothing {
-    throw DataNotFoundException()
+fun notFoundEntity(): Nothing {
+    throw NotFoundEntityException()
 }
 
 /**
  * 메세지가 있는 경우
+ *
+ * @param message
  */
-fun dataNotFound(message: String?): Nothing {
+fun notFoundEntity(message: String?): Nothing {
     if(message == null) {
-        dataNotFound()
+        notFoundEntity()
     } else {
-        throw DataNotFoundException(message)
+        throw NotFoundEntityException(message)
     }
 }

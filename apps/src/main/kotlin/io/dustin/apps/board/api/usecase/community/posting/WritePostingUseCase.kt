@@ -21,6 +21,8 @@ class WritePostingUseCase (
         val posting: Posting = writePostingService.create(userId, subject, content)
 
 
+
+
         try {
             val callResponse = testCall.feignTest("테스트중!")
             println("이것이 나오면 성공한것 !")

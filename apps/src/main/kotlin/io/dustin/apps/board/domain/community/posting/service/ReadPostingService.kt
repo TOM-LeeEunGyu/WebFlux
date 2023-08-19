@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 class ReadPostingService (
     private val postingRepository: PostingRepository
 ) {
+
     fun TestFindAll() =
         postingRepository.findAll()
 
@@ -21,21 +22,6 @@ class ReadPostingService (
 
     fun getPostingList(userId: Long, recordsCount: Long, nextId: Long?) =
         postingRepository.getPostingList(userId, recordsCount, nextId)
-
-
-    fun useCase(id: Long) {
-        val posting = this.findByIdOrThrow(id) // --> 우리가 의도한 대로
-
-        //do something
-    }
-
-    fun useCaseWithNull(id: Long) {
-        val posting = this.findByIdOrNull(id)
-
-        posting?.let {
-            TODO("포스팅 정보를 가지고 뭔갈를 한다.")
-        } ?: TODO("기존의 어떤 값을 가지고 포스팅 객체 정보를 생성하거나 ????")
-    }
 
 
     fun findByIdOrNull(postingId: Long): Posting? {

@@ -41,8 +41,8 @@ class ReadQuestionUseCase(
         val userId: Long = 1
 
         writeQuestionService.click(questionId)
-        val question: QuestionDto = readQuestionService.getQuestion(userId, questionId) ?: throw  DataNotFoundException("데이터 없뜸")
-        val answer: Answer = readAnswerService.findByQuestionId(questionId) ?: throw  DataNotFoundException("데이터 없뜸")
+        val question: QuestionDto = readQuestionService.getQuestion(userId, questionId)
+        val answer: Answer = readAnswerService.findByQuestionId(questionId)
 
         return QuestionDetailDto.from(question, AnswerDto.from(answer))
     }

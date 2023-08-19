@@ -13,12 +13,16 @@ import java.time.LocalDateTime
 data class QuestionDto(
     @Schema(description = "id")
     val id: Long,
+
     @Schema(description = "질문을 작성한 유저 id")
     val userId: Long,
+
     @Schema(description = "질문 제목")
     var subject: String,
+
     @Schema(description = "질문 내용")
     var content: String,
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(type = "string", description = "객체 생성 날짜", example = "1900-01-01 23:59:59")
     val createdAt: LocalDateTime

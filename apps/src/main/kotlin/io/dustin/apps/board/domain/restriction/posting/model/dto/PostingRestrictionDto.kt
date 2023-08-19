@@ -12,12 +12,16 @@ import java.time.LocalDateTime
 data class PostingRestrictionDto(
     @Schema(description = "id")
     val id: Long,
+
     @Schema(description = "from 유저 id 값")
     val fromUserId: Long,
+
     @Schema(description = "to 유저 id 값")
     val toUserId: Long,
+
     @Schema(description = "제한할 게시물 아이디")
     val postingId: Long,
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(type = "string", description = "객체 생성 날짜", example = "1900-01-01 23:59:59")
     val createdAt: LocalDateTime

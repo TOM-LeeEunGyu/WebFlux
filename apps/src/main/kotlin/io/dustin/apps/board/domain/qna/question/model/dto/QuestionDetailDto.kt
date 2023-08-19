@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class QuestionDetailDto(
     @Schema(description = "질문 객체")
     val question: QuestionDto,
+
     @Schema(description = "답변 객체")
     val answer: AnswerDto
 ) {

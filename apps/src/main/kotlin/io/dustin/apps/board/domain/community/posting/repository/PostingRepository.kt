@@ -7,5 +7,4 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
 interface PostingRepository : BaseRepository<Posting, Long>, CustomPostingRepository {
-    override fun findAll(pageable: Pageable): Page<Posting>
 }
