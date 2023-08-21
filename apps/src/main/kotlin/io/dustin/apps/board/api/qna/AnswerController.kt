@@ -1,15 +1,27 @@
 package io.dustin.apps.board.api.qna
 
+import io.dustin.apps.board.api.qna.request.command.AnswerCommand
+import io.dustin.apps.board.api.qna.request.command.AnswerDeleteCommand
+import io.dustin.apps.board.api.qna.request.command.AnswerModifyCommand
 import io.dustin.apps.board.api.usecase.qna.answer.DeleteAnswerUseCase
 import io.dustin.apps.board.api.usecase.qna.answer.ModifyAnswerUseCase
 import io.dustin.apps.board.api.usecase.qna.answer.WriteAnswerUseCase
 import io.dustin.apps.board.domain.qna.answer.model.dto.AnswerDto
+import io.dustin.apps.common.code.CommonMessage
 import io.dustin.apps.common.exception.BadRequestParameterException
+import io.dustin.apps.common.model.response.CommonResponse
+import io.dustin.apps.common.model.response.ResultResponse
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDateTime
 
 
 @RestController
 @RequestMapping("/api/v1/answer")
+@Tag(name = "1:1문의 답변 API", description = "1:1문의 답변 API 를 제공한다.")
 class AnswerController (
 
     private val writeAnswerUseCase: WriteAnswerUseCase,
@@ -17,34 +29,49 @@ class AnswerController (
     private val deleteAnswerUseCase: DeleteAnswerUseCase
 
 ) {
+    /** =================== 1:1 문의에 대한 답변 endpoint =============== */
 
-    @PostMapping("/questions/{questionId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/crate")
+    @Operation(
+        summary = "1:1 문의의 답변을 작성한다",
+        description = "1:1 문의의 답변을 작성한다"
+    )
     fun createAnswer(
-        @PathVariable("questionId") questionId: Long,
-        @RequestBody answerDto: AnswerDto
-    ): AnswerDto {
-        if (answerDto.content == null) {
-            throw BadRequestParameterException("댓글 내용은 필수항목입니다.")
-        }
-        return writeAnswerUseCase.execute(answerDto.adminId, questionId, answerDto.content)
+        @RequestBody @Valid command: AnswerCommand
+    ): ResultResponse<AnswerDto> {
+        return writeAnswerUseCase.execute(command.adminId, command.questionId, command.content)
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/{answerId}")
+    @Operation(
+        summary = "1:1 문의의 답변을 수정한다",
+        description = "1:1 문의의 답변을 수정한다"
+    )
     fun modifyAnswer(
         @PathVariable("answerId") answerId: Long,
-        @RequestBody answerDto: AnswerDto
-    ): AnswerDto {
-        if (answerDto.content == null) {
-            throw BadRequestParameterException("댓글 내용은 필수항목입니다.")
-        }
-        return modifyAnswerUseCase.execute(answerDto.adminId, answerId, answerDto.content)
+        @RequestBody @Valid command: AnswerModifyCommand
+    ): ResultResponse<AnswerDto> {
+
+        return modifyAnswerUseCase.execute(command.adminId, answerId, command.content)
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{answerId}")
+    @Operation(
+        summary = "1:1 문의의 답변을 삭제한다",
+        description = "1:1 문의의 답변을 삭제한다"
+    )
     fun deleteAnswer(
         @PathVariable("answerId") answerId: Long,
-        @RequestBody answerDto: AnswerDto
-    ): AnswerDto {
-        return deleteAnswerUseCase.execute(answerDto.adminId, answerId)
+        @RequestBody command: AnswerDeleteCommand
+    ): CommonResponse {
+        deleteAnswerUseCase.execute(command.adminId, answerId)
+        return CommonResponse(
+            code = HttpStatus.OK.value(),
+            message = CommonMessage.SUCCESS.code,
+            timestamp = LocalDateTime.now()
+        )
     }
 }

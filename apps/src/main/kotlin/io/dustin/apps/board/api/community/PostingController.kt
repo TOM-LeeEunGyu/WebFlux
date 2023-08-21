@@ -1,6 +1,7 @@
 package io.dustin.apps.board.api.community
 
 import io.dustin.apps.board.api.community.request.command.PostingCreateCommand
+import io.dustin.apps.board.api.community.request.command.PostingDeleteCommand
 import io.dustin.apps.board.api.community.request.command.PostingUpdateCommand
 import io.dustin.apps.board.api.community.request.query.AllPostingQuery
 import io.dustin.apps.board.api.community.request.query.PostingDetailQuery
@@ -68,17 +69,20 @@ class PostingController (
     fun modifyPosting(
         @PathVariable("postingId") postingId: Long,
         @RequestBody @Valid command: PostingUpdateCommand,
-    ): PostingDto {
-        command.checkAssignment()
+    ): ResultResponse<PostingDto> {
         return modifyPostingUseCase.execute(command.userId, postingId, command.subject, command.content)
     }
 
-    @DeleteMapping("/{postingId}/user/{userId}")
+    @DeleteMapping("/{postingId}")
     fun deletePosting(
         @PathVariable("postingId") postingId: Long,
-        @PathVariable("userId") userId: Long,
-    ): PostingDto {
-        /** req 데이터 검증로직 추가 필요  */
-        return deletePostingUseCase.execute(userId, postingId)
+        @RequestBody @Valid command: PostingDeleteCommand,
+    ): CommonResponse {
+        deletePostingUseCase.execute(command.userId, postingId)
+        return CommonResponse(
+            code = HttpStatus.OK.value(),
+            message = CommonMessage.SUCCESS.code,
+            timestamp = LocalDateTime.now()
+        )
     }
 }

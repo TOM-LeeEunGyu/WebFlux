@@ -4,6 +4,7 @@ import io.dustin.apps.board.domain.community.comment.model.Comment
 import io.dustin.apps.board.domain.community.comment.model.dto.CommentDto
 import io.dustin.apps.board.domain.community.comment.service.ReadCommentService
 import io.dustin.apps.board.domain.community.comment.service.WriteCommentService
+import io.dustin.apps.common.model.response.ResultResponse
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
@@ -16,12 +17,10 @@ class ModifyCommentUseCase (
 
     ) {
 
-    fun execute(userId: Long, commentId: Long, content: String): CommentDto {
+    fun execute(userId: Long, commentId: Long, content: String): ResultResponse<CommentDto> {
         val comment: Comment = readCommentService.findByIdOrThrow(commentId)
-        if (comment.userId != userId) {
-            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.")
-        }
         writeCommentService.updateContent(comment, content)
-        return CommentDto.from(comment)
+        val result = CommentDto.from(comment)
+        return ResultResponse.of(result)
     }
 }

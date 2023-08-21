@@ -4,6 +4,7 @@ import io.dustin.apps.board.domain.qna.question.model.Question
 import io.dustin.apps.board.domain.qna.question.model.dto.QuestionDto
 import io.dustin.apps.board.domain.qna.question.service.ReadQuestionService
 import io.dustin.apps.board.domain.qna.question.service.WriteQuestionService
+import io.dustin.apps.common.model.response.ResultResponse
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -13,8 +14,9 @@ class WriteQuestionUseCase (
 ) {
 
     @Transactional
-    fun execute(userId: Long, subject: String, content: String): QuestionDto {
+    fun execute(userId: Long, subject: String, content: String): ResultResponse<QuestionDto> {
         val question: Question = writeQuestionService.create(userId, subject, content)
-        return QuestionDto.from(question)
+        val result =  QuestionDto.from(question)
+        return ResultResponse.of(result)
     }
 }

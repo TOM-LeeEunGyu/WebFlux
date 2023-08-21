@@ -9,9 +9,11 @@ data class PostingCreateCommand(
     @Schema(description = "유저정보")
     @field:NotBlank(message = "유저 id 정보는 필수입니다.")
     val userId: Long,
+
     @Schema(description = "제목")
     @field:Min(5, message = "제목은 최소 5자이상 작성해야 합니다")
     val subject: String,
+
     @Schema(description = "내용")
     @field:Min(5, message = "내용은 최소 5자이상 작성해야 합니다")
     val content: String,

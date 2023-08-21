@@ -19,9 +19,6 @@ class DeletePostingUseCase (
     @Transactional
     fun execute(userId: Long, postingId: Long): PostingDto {
         val posting: Posting = readPostingService.findByIdOrThrow(postingId)
-        if (posting.userId != userId) {
-            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.")
-        }
         writePostingService.delete(posting)
         return PostingDto.from(posting)
     }

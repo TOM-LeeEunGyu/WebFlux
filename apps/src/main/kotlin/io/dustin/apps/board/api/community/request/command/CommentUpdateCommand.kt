@@ -9,10 +9,9 @@ class CommentUpdateCommand(
     @Schema(description = "유저정보")
     @field:NotBlank(message = "유저 id 정보는 필수입니다.")
     val userId: Long,
-    val replyId: Long?,
-    @Schema(description = "댓글")
+
+
     @field:Min(5, message = "댓글은 최소 5자이상 작성해야 합니다")
     val content: String,
 
-) {
-}
+)
