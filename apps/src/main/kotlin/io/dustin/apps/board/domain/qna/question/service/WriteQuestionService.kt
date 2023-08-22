@@ -22,7 +22,7 @@ class WriteQuestionService (
             content = content,
 
         )
-        return questionRepository.save<Question>(question)
+        return questionRepository.save(question)
     }
 
     /**

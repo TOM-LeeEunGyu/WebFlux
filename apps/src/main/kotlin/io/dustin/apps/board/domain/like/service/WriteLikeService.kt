@@ -9,17 +9,24 @@ import org.springframework.stereotype.Service
 class WriteLikeService (
     val likeRepository: LikeRepository
 ) {
+
+    /**
+     * 좋아요
+     */
     fun create(userId: Long, boardId: Long, boardType: BoardType): Like {
         val like = Like(
             userId = userId,
             boardId = boardId,
             boardType = boardType
         )
-        likeRepository.save<Like>(like)
+        likeRepository.save(like)
         return like
     }
 
+    /**
+     * 좋아요 취소
+     */
     fun delete(userId: Long, boardId: Long, boardType: BoardType) {
-        likeRepository.deleteByUserIdAndBoardIdAndBoardType(userId, boardId, boardType)
+        likeRepository.deleteByUsers(userId, boardId, boardType)
     }
 }

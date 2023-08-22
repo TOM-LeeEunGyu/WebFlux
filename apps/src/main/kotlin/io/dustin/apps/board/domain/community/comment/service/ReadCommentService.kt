@@ -13,9 +13,15 @@ class ReadCommentService (
     private val commentRepository: CommentRepository
 ) {
 
+    /**
+     * 게시물에 대한 댓글 리스트 불러오기
+     */
     fun getCommentsByPosting(userId: Long, postingId: Long, recordsCount: Long, nextId: Long?) =
         commentRepository.commentListByPosting(userId, postingId, recordsCount, nextId)
 
+    /**
+     * 하위댓글 리스트 불러오기
+     */
     fun replyListByComment(userId: Long, commentId: Long, recordsCount: Long, nextId: Long?) =
         commentRepository.replyListByComment(userId, commentId, recordsCount, nextId)
 

@@ -18,7 +18,7 @@ class WritePostingRestrictionService(
             toUserId =  toUserId,
             postingId = postingId,
         )
-        postingRestrictionRepository.save<PostingRestriction>(postingRestriction)
+        postingRestrictionRepository.save(postingRestriction)
         return postingRestriction
     }
 

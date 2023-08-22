@@ -27,7 +27,7 @@ class ReadQuestionService (
      */
     fun getQuestion(userId: Long, questionId: Long): QuestionDto {
         val errorMessage = "질문객체 고유값[$questionId]로 조회된 정보가 없습니다."
-        return questionRepository.getQuestion(userId, questionId) ?: notFoundEntity(errorMessage)
+        return questionRepository.getQuestion(userId, questionId)
     }
 
 

@@ -12,10 +12,13 @@ import java.time.LocalDateTime
 data class BlockedUserDto(
     @Schema(description = "id")
     val id: Long,
+
     @Schema(description = "from 유저 id 값")
     val fromUserId: Long,
+
     @Schema(description = "to 유저 id 값")
     val toUserId: Long,
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(type = "string", description = "거래일시", example = "1900-01-01 23:59:59")
     val createdAt: LocalDateTime

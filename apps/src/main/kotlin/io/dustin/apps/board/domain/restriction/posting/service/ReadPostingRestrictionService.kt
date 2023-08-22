@@ -13,7 +13,7 @@ class ReadPostingRestrictionService (
     /**
      * 제한된 유저 객체 가져오기
      */
-    fun getPostingRestrictionUser(fromUserId: Long, toUserId: Long, postingId: Long): PostingRestriction? {
+    fun getPostingRestrictionUser(fromUserId: Long, toUserId: Long, postingId: Long): PostingRestriction {
         val errorMessage = "조회된 정보가 없습니다."
         return postingRestrictionRepository.findByUsers(fromUserId, toUserId, postingId) ?: notFoundEntity(errorMessage)
     }

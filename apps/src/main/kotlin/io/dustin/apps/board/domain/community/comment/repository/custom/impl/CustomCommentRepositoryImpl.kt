@@ -14,7 +14,8 @@ import io.dustin.apps.common.code.BoardType
 import io.dustin.apps.common.code.YesOrNo
 import io.dustin.apps.common.model.extension.CommentExtension
 
-class CustomCommentRepositoryImpl(private val query: JPAQueryFactory) : CustomCommentRepository {
+class CustomCommentRepositoryImpl(
+    private val query: JPAQueryFactory): CustomCommentRepository {
 
     override fun commentListByPosting(userId: Long, postingId: Long, recordsCount: Long, nextId: Long?): List<CommentDto> {
         val self = QComment("self")

@@ -14,28 +14,40 @@ import java.time.LocalDateTime.now
 data class PostingDto(
     @Schema(description = "id")
     val id: Long,
+
     @Schema(description = "유저 id")
     val userId: Long,
+
     @Schema(description = "제목")
     val subject: String,
+
     @Schema(description = "내용")
     val content: String,
+
     @Schema(description = "로그인한 유저가 해당 게시물에 좋아요를 눌렀는지에 대한 유무 판단")
     var isLike: Boolean,
+
     @Schema(description = "로그인한 유저가 해당 게시물을 북마크에 추가했는지에 대한 유무 판단")
     var isBookmark: Boolean,
+
     @Schema(description = "해당 게시물의 로그인한 유저의 팔로잉 리스트에 해당되는 유저가 작성했는지에 대한 유무 판다")
     var following: Boolean,
+
     @Schema(description = "해당 게시물의 로그인한 유저의 팔로워 리스트에 해당되는 유저가 작성했는지에 대한 유무 판다")
     var follower: Boolean,
+
     @Schema(description = "해당 게시물의 로그인한 유저의 팔로잉 및 팔로워 리스트에 해당되는 유저가 작성했는지에 대한 유무 판다")
     var followingAndFollower: Boolean,
+
     @Schema(description = "댓글수")
     var commentCnt: Long,
+
     @Schema(description = "조회수")
     var clickCnt: Long,
+
     @Schema(description = "좋아요 수")
     var likeCount: Long,
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(type = "string", description = "객체 생성 날짜", example = "1900-01-01 23:59:59")
     val createdAt: LocalDateTime = now(),

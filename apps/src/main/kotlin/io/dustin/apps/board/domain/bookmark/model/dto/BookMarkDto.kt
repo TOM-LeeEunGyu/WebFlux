@@ -12,10 +12,13 @@ import java.time.LocalDateTime
 data class BookMarkDto(
     @Schema(description = "id")
     val id: Long,
+
     @Schema(description = "유저 id 값")
     val userId: Long,
+
     @Schema(description = "북마크에 추가하려는 게시물 id 값")
     val boardId: Long,
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(type = "string", description = "객체 생성 날짜", example = "1900-01-01 23:59:59")
     val createdAt: LocalDateTime

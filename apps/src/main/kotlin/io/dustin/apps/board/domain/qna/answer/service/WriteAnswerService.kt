@@ -20,7 +20,7 @@ class WriteAnswerService (
             questionId = questionId,
             content = content
         )
-        answerRepository.save<Answer>(answer)
+        answerRepository.save(answer)
         return answer
     }
 

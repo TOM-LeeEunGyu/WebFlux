@@ -3,6 +3,8 @@ package io.dustin.apps.board.domain.community.comment.service
 import io.dustin.apps.board.domain.community.comment.model.Comment
 import io.dustin.apps.board.domain.community.comment.repository.CommentRepository
 import io.dustin.apps.common.exception.DataNotFoundException
+import io.dustin.apps.common.repository.findByIdOrThrow
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -10,6 +12,10 @@ import java.util.*
 class WriteCommentService (
     private val commentRepository: CommentRepository
 ) {
+
+    /**
+     * 댓글 작성
+     */
     fun create(userId: Long, postingId: Long, replyId: Long?, content: String): Comment {
         val comment = Comment(
             userId = userId,
@@ -17,18 +23,27 @@ class WriteCommentService (
             replyId = replyId,
             content = content,
         )
-        commentRepository.save<Comment>(comment)
+        commentRepository.save(comment)
         return comment
     }
 
+    /**
+     * 댓글 수정
+     */
     fun updateContent(comment: Comment, content: String) {
         comment.updateContent(content)
     }
 
+    /**
+     * 댓글 삭제
+     */
     fun delete(comment: Comment) {
         comment.delete()
     }
 
+    /**
+     * 댓글 좋아요 수 증가
+     */
     fun likeCount(commentId: Long) {
         println("댓글 id : [$commentId] 좋아요 수 증가")
         val comment = findByIdOrThrow(commentId)
@@ -36,6 +51,9 @@ class WriteCommentService (
         comment.updateLikeCount(likeCount)
     }
 
+    /**
+     * 댓글 좋아요 수 감소
+     */
     fun likeUnCount(commentId: Long) {
         println("댓글 id : [$commentId] 좋아요 수 감소")
         val comment = findByIdOrThrow(commentId)
@@ -43,15 +61,12 @@ class WriteCommentService (
         comment.updateLikeCount(likeCount)
     }
 
-    fun findById(commentId: Long): Comment {
-        return commentRepository.findById(commentId).orElse(null)
+    fun findByIdOrNull(commentId: Long): Comment? {
+        return commentRepository.findByIdOrNull(commentId)
     }
 
     fun findByIdOrThrow(commentId: Long): Comment {
-        return commentRepository.findById(commentId)
-            .orElseThrow {
-                DataNotFoundException("id [#1]로 조회된 댓글이 없습니다.".trimIndent().replace("#1", commentId.toString()))
-            }
+        return commentRepository.findByIdOrThrow(commentId)
     }
 
 }
