@@ -10,6 +10,10 @@ data class AnswerModifyCommand(
     @Schema(description = "답글을 작성자의  adminId", example = "1")
     val adminId: Long,
 
+    @field:NotNull(message = "answerId는 필수값 입니다.")
+    @Schema(description = "수정할 답글의 Id", example = "1")
+    val answerId: Long,
+
 
     @field:NotNull(message = "questionId 필수값 입니다.")
     @Schema(description = "답글을 작성할 질문에 대한 id값", example = "1")

@@ -40,34 +40,32 @@ class AnswerController (
     fun createAnswer(
         @RequestBody @Valid command: AnswerCommand
     ): ResultResponse<AnswerDto> {
-        return writeAnswerUseCase.execute(command.adminId, command.questionId, command.content)
+        return writeAnswerUseCase.execute(command)
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PatchMapping("/{answerId}")
+    @PatchMapping("/modify")
     @Operation(
         summary = "1:1 문의의 답변을 수정한다",
         description = "1:1 문의의 답변을 수정한다"
     )
     fun modifyAnswer(
-        @PathVariable("answerId") answerId: Long,
         @RequestBody @Valid command: AnswerModifyCommand
     ): ResultResponse<AnswerDto> {
 
-        return modifyAnswerUseCase.execute(command.adminId, answerId, command.content)
+        return modifyAnswerUseCase.execute(command)
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{answerId}")
+    @DeleteMapping("/delete")
     @Operation(
         summary = "1:1 문의의 답변을 삭제한다",
         description = "1:1 문의의 답변을 삭제한다"
     )
     fun deleteAnswer(
-        @PathVariable("answerId") answerId: Long,
-        @RequestBody command: AnswerDeleteCommand
+        @RequestBody @Valid command: AnswerDeleteCommand
     ): CommonResponse {
-        deleteAnswerUseCase.execute(command.adminId, answerId)
+        deleteAnswerUseCase.execute(command)
         return CommonResponse(
             code = HttpStatus.OK.value(),
             message = CommonMessage.SUCCESS.code,

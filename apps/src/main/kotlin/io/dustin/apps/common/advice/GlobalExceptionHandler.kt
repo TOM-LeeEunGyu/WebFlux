@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.server.ResponseStatusException
 import java.time.LocalDateTime.now
+import javax.naming.AuthenticationException
 
 
 @RestControllerAdvice
@@ -42,6 +43,17 @@ class GlobalExceptionHandler {
             timestamp = SelectDate.TYPE_FOUR.transform(now())
         )
     }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(AuthenticationException::class)
+    fun handleAuthenticationException(e: ResponseStatusException): ApiError {
+        return ApiError(
+            status = HttpStatus.BAD_REQUEST.value(),
+            message = e.message,
+            timestamp = SelectDate.TYPE_FOUR.transform(now())
+        )
+    }
+
 
     data class ApiError(
         val status: Int,

@@ -16,7 +16,7 @@ class DeleteLikeUseCase (
 ) {
     @Transactional
     fun execute(userId: Long, boardId: Long, boardType: BoardType): LikeDto {
-        val like = readLIkeService.getLike(userId, boardId, boardType) ?: throw DataNotFoundException("데이터가 없습니다.")
+        val like = readLIkeService.getLike(userId, boardId, boardType)
         writeLikeService.delete(userId, boardId, boardType)
         return LikeDto.from(like)
     }
