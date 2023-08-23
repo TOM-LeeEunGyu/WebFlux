@@ -1,7 +1,9 @@
 package io.dustin.apps.common.cache
 
 import io.dustin.apps.board.domain.community.posting.model.dto.PostingDto
+import io.dustin.apps.common.exception.DataNotFoundException
 import io.dustin.apps.common.utils.dataNotFound
+import io.dustin.apps.common.utils.notFoundEntity
 import org.springframework.stereotype.Component
 import java.util.concurrent.ConcurrentHashMap
 

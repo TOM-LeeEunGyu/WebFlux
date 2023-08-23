@@ -1,5 +1,6 @@
 package io.dustin.apps.common.repository
 
+import io.dustin.apps.common.exception.DataNotFoundException
 import io.dustin.apps.common.utils.dataNotFound
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.findByIdOrNull
@@ -18,4 +19,4 @@ import org.springframework.data.repository.findByIdOrNull
  *
  * 이처럼 코틀린에서도 기존에 있는 객체를 커스텀해서 사용할 수 있다.
  */
-fun <T, ID> CrudRepository<T, ID>.findByIdOrThrow(id: ID, message: String? = null): T = this.findByIdOrNull(id) ?: dataNotFound(message)
+fun <T, ID> CrudRepository<T, ID>.findByIdOrThrow(id: ID, message: String? = null): T = this.findByIdOrNull(id) ?: dataNotFound()

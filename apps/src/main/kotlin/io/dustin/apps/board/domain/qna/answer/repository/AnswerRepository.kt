@@ -4,5 +4,5 @@ import io.dustin.apps.board.domain.qna.answer.model.Answer
 import io.dustin.apps.common.repository.BaseRepository
 
 interface AnswerRepository : BaseRepository<Answer, Long> {
-    fun findByAnswerId(questionId: Long): Answer?
+    fun findByQuestionId(questionId: Long): Answer?
 }

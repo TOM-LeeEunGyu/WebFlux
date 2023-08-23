@@ -10,7 +10,7 @@ interface LikeRepository : BaseRepository<Like, Long> {
 
     @Query("SELECT s FROM Like s WHERE s.userId = :userId AND s.boardId = :boardId AND s.boardType = :boardType")
     fun findByUsers(userId: Long, boardId: Long, boardType: BoardType): Like?
-    @Query("DELETE s FROM Like s WHERE s.userId = :userId AND s.boardId = :boardId AND s.boardType = :boardType")
+    @Query("DELETE FROM Like s WHERE s.userId = :userId AND s.boardId = :boardId AND s.boardType = :boardType")
     fun deleteByUsers(userId: Long, boardId: Long, boardType: BoardType)
 
 }

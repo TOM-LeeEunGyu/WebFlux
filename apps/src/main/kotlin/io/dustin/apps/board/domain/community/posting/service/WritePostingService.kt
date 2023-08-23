@@ -2,6 +2,7 @@ package io.dustin.apps.board.domain.community.posting.service
 
 import io.dustin.apps.board.domain.community.posting.model.Posting
 import io.dustin.apps.board.domain.community.posting.repository.PostingRepository
+import io.dustin.apps.board.domain.like.model.LikeCountService
 import io.dustin.apps.common.exception.DataNotFoundException
 import io.dustin.apps.common.repository.findByIdOrThrow
 import org.springframework.data.repository.findByIdOrNull
@@ -11,7 +12,7 @@ import java.util.*
 @Service("posting")
 class WritePostingService (
     private val postingRepository: PostingRepository
-) {
+): LikeCountService {
 
     /**
      * 게시물 작성
@@ -73,7 +74,7 @@ class WritePostingService (
     /**
      * 좋아요 수 증가
      */
-    fun likeCount(postingId: Long) {
+    override fun likeCount(postingId: Long) {
         val posting: Posting = findByIdOrThrow(postingId)
         val likeCount: Long = posting.likeCount + 1
         posting.updateLikeCount(likeCount)
@@ -82,7 +83,7 @@ class WritePostingService (
     /**
      * 좋아요 수 감소
      */
-    fun likeUnCount(postingId: Long) {
+    override fun likeUnCount(postingId: Long) {
         val posting: Posting = findByIdOrThrow(postingId)
         val likeCount: Long = posting.likeCount - 1
         posting.updateLikeCount(likeCount)

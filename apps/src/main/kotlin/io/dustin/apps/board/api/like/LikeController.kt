@@ -19,7 +19,7 @@ class LikeController (
     @PostMapping("/like")
     fun like(@RequestBody command: LikeItCommand): LikeDto {
         println("좋아요 저장했습니다.")
-        val lcs: LikeCountService = command.boardType
+        val lcs: LikeCountService = command.boardType.supplier()
         lcs.likeCount(command.boardId)
         return writeLikeUseCase.execute(command.userId, command.boardId, command.boardType)
     }
@@ -27,8 +27,8 @@ class LikeController (
     @PatchMapping("/unlike")
     fun unlike(@RequestBody command: LikeItCommand): LikeDto {
         println("좋아요 삭제했습니다.")
-        val lcs: LikeCountService = command.boardType
-        lcs.likeUnCount(command.boardId)
+        val lcs: LikeCountService = command.boardType.supplier()
+        lcs.likeCount(command.boardId)
         return deleteLikeUseCase.execute(command.userId, command.boardId, command.boardType)
     }
 }

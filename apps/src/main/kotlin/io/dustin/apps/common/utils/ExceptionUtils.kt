@@ -22,3 +22,21 @@ fun notFoundEntity(message: String?): Nothing {
         throw NotFoundEntityException(message)
     }
 }
+
+/**
+ * 데이터가 없을 때(메세지 없음)
+ */
+fun dataNotFound(): Nothing {
+    throw DataNotFoundException()
+}
+
+/**
+ * 데이터가 없을 때(메세지 있음)
+ */
+fun dataNotFound(message: String): Nothing {
+    if (message == null) {
+        dataNotFound()
+    } else {
+        throw DataNotFoundException(message)
+    }
+}

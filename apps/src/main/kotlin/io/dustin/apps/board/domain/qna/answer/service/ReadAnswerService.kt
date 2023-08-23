@@ -18,7 +18,7 @@ class ReadAnswerService(
 
     fun findByQuestionId(questionId: Long): Answer {
         val errorMessage = "질문객체 고유값[$questionId]로 조회된 정보가 없습니다."
-        return answerRepository.findByAnswerId(questionId) ?: notFoundEntity(errorMessage)
+        return answerRepository.findByQuestionId(questionId) ?: notFoundEntity(errorMessage)
     }
 
     fun findByIdOrNull(answerId: Long): Answer? {

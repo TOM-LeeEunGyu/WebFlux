@@ -19,7 +19,7 @@ class ModifyPostingUseCase (
 ) {
 
     @Transactional
-    fun execute(userId: Long, postingId: Long, subject: String?, content: String?): ResultResponse<PostingDto> {
+    fun execute(userId: Long, postingId: Long, subject: String, content: String): ResultResponse<PostingDto> {
         val posting: Posting = readPostingService.findByIdOrThrow(postingId)
         writePostingService.updateContent(posting, subject, content)
         val result = PostingDto.from(posting)

@@ -3,6 +3,7 @@ package io.dustin.apps.common.utils
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import io.dustin.apps.common.provider.ApplicationContextProvider
 
 /**
  * kotlin jackson object mapper
@@ -34,4 +35,10 @@ fun <T> toObject(json: String, valueType: Class<T>): T = mapper.readValue(json, 
  */
 fun <T> List<T>.lastAt(): T {
     return this[this.size - 1]
+}
+
+/** inline은 반복적으로 호출할 때 오버헤드를 줄일 수 있다고 한다 */
+inline fun <reified T> getBean(beanId: String, clazz: Class<T>): T {
+    val applicationContext = ApplicationContextProvider.applicationContext
+    return applicationContext.getBean(beanId, clazz) ?: throw NullPointerException("Spring Container not initialized")
 }

@@ -10,9 +10,6 @@ class WriteFollowService (
     private val followRepository: FollowRepository
 ) {
 
-
-
-
     fun create(followerId: Long, followingId: Long): Follow {
         val follow =  Follow(
             followerId = followerId,
