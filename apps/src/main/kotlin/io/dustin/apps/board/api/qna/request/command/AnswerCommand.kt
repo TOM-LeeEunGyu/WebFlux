@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull
 
 data class AnswerCommand(
 
-    @field:NotNull(message = "adminId는 필수값 입니다.")
     @Schema(description = "답글을 작성자의  adminId", example = "1")
     @field:Min(1, message = "adminId는 필수입니다. 최소값은 1입니다.")
     val adminId: Long,
