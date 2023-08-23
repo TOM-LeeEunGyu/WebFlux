@@ -12,6 +12,7 @@ import io.dustin.apps.board.domain.qna.question.model.QQuestion
 import io.dustin.apps.board.domain.qna.question.model.QQuestion.question
 import io.dustin.apps.board.domain.qna.question.repository.custom.CustomQuestionRepository
 import io.dustin.apps.common.code.YesOrNo
+import io.dustin.apps.common.utils.dataNotFound
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -19,7 +20,7 @@ class CustomQuestionRepositoryImpl(
     private val query: JPAQueryFactory) : CustomQuestionRepository {
 
     override fun getQuestion(userId: Long, questionId: Long
-    ): QuestionDto? {
+    ): QuestionDto {
         return query.select(
             constructor(
                 QuestionDto::class.java,
@@ -27,7 +28,7 @@ class CustomQuestionRepositoryImpl(
                 question.userId,
                 question.subject,
                 question.content,
-                CaseBuilder().`when`(answer.id.isNotNull).then(true).otherwise(false).`as`("isComment"),
+                CaseBuilder().`when`(answer.id.isNotNull).then(true).otherwise(false).`as`("isAnswer"),
                 question.createdAt
             ))
             .from(question)
@@ -39,7 +40,7 @@ class CustomQuestionRepositoryImpl(
                 question.userId.eq(userId),
                 question.isDeleted.ne(YesOrNo.Y)
             )
-            .fetchOne()
+            .fetchOne() ?: dataNotFound("존재하지 않는 질문입니다.")
     }
 
     override fun getQuestionList(userId: Long, recordsCount: Long, nextId: Long?):

@@ -23,12 +23,15 @@ data class QuestionDto(
     @Schema(description = "질문 내용")
     var content: String,
 
+    @Schema(description = "답변 여부")
+    var isAnswer: Boolean,
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(type = "string", description = "객체 생성 날짜", example = "1900-01-01 23:59:59")
     val createdAt: LocalDateTime
 ) : IdAble {
 
-    var isComment: Boolean = false
+
     companion object {
         fun from(question: Question) = with(question) {
             QuestionDto(
@@ -36,6 +39,7 @@ data class QuestionDto(
                 userId = userId,
                 subject = subject,
                 content = content,
+                isAnswer = false,
                 createdAt = createdAt
 
             )

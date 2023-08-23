@@ -12,8 +12,7 @@ data class QuestionDetailQuery(
     val userId: Long,
 
     @Schema(description = "질문객체 고유 id 값")
-    @field:NotNull(message = "questionId는 필수입니다.")
-    @field:NotBlank(message = "questionId는 필수입니다.")
+    @field:Min(1, message = "questionId는 필수입니다. 최소값은 1입니다.")
     val questionId: Long,
 
 )
