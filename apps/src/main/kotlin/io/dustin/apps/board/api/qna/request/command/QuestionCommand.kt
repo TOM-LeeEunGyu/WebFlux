@@ -8,18 +8,17 @@ import jakarta.validation.constraints.NotNull
 data class QuestionCommand(
 
     @Schema(description = "유저 고유 id 값", example = "1")
-    @field:NotNull(message = "userId는 필수입니다.")
-    @field:NotBlank(message = "userId는 필수입니다.")
+    @field:Min(1, message = "userId는 필수입니다. 최소값은 1입니다.")
     val userId: Long,
 
     @Schema(description = "질문 제목", example = "문의드립니다.")
     @field:NotNull(message = "subject는 필수값 입니다.")
-    @field:Min(5, message = "제목은 최소 5자 이상 작성해야 합니다")
+    @field:NotBlank(message = "발행관리기관계좌번호 필수입니다.")
     val subject: String,
 
     @Schema(description = "질문 내용", example = "어쩌구 저쩌구 ~")
-    @field:NotNull(message = "답글 내용은 필수입니다.")
-    @field:Min(5, message = "답글은 최소 5자 이상 작성해야 합니다")
+    @field:NotNull(message = "content는 필수입니다.")
+    @field:NotBlank(message = "content는 필수입니다.")
     val content: String,
 
 

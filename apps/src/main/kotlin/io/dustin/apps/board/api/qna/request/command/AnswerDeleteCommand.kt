@@ -1,16 +1,16 @@
 package io.dustin.apps.board.api.qna.request.command
 
 import io.swagger.v3.oas.annotations.media.Schema
-import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Min
 
 data class AnswerDeleteCommand(
 
-    @field:NotNull(message = "adminId는 필수값 입니다. 작성자만 삭제할 수 있습니다.")
     @Schema(description = "삭제할 답변객체의  answerId", example = "1")
+    @field:Min(1, message = "answerId는 필수입니다. 최소값은 1입니다.")
     val answerId: Long,
 
-    @field:NotNull(message = "adminId는 필수값 입니다. 작성자만 삭제할 수 있습니다.")
     @Schema(description = "답글 작성자의  adminId", example = "1")
+    @field:Min(1, message = "adminId는 필수입니다. 최소값은 1입니다.")
     val adminId: Long,
 
 )
