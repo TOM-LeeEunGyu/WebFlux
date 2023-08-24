@@ -3,6 +3,7 @@ package io.dustin.apps.board.api.qna.request.command
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Min
 
+@Schema(description = "답변 삭제 요청 객체")
 data class AnswerDeleteCommand(
 
     @Schema(description = "삭제할 답변객체의  answerId", example = "1")

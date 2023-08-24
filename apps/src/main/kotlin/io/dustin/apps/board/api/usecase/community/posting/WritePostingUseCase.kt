@@ -5,6 +5,7 @@ import io.dustin.apps.board.domain.community.posting.model.dto.PostingDto
 import io.dustin.apps.board.domain.community.posting.service.WritePostingService
 import io.dustin.apps.common.exception.FeignClientErrorException
 import io.dustin.apps.common.external.TestCall
+import io.dustin.apps.common.model.response.ResultResponse
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -17,11 +18,9 @@ class WritePostingUseCase (
 
 ) {
     @Transactional
-    fun execute(userId: Long, subject: String, content: String) {
+    fun execute(userId: Long, subject: String, content: String): ResultResponse<PostingDto> {
         val posting: Posting = writePostingService.create(userId, subject, content)
-
-
-
+        val result = PostingDto.from(posting)
 
         try {
             val callResponse = testCall.feignTest("테스트중!")
@@ -32,6 +31,7 @@ class WritePostingUseCase (
         } catch (e: Exception) {
             throw FeignClientErrorException(e.message)
         }
+        return ResultResponse.of(result)
 
     }
 }

@@ -3,6 +3,7 @@ package io.dustin.apps.board.api.follow.request.command
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Min
 
+@Schema(description = "팔로우 및 언팔로우 요청 객체")
 data class FollowCommand(
 
     @Schema(description = "following할 유저 id")

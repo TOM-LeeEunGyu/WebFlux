@@ -1,18 +1,22 @@
 package io.dustin.apps.board.api.community
 
 import io.dustin.apps.board.api.community.request.command.CommentCreateCommand
-import io.dustin.apps.board.api.community.request.command.CommentUpdateCommand
+import io.dustin.apps.board.api.community.request.command.CommentDeleteCommand
+import io.dustin.apps.board.api.community.request.command.CommentModifyCommand
+import io.dustin.apps.board.api.community.request.query.AllCommentQuery
+import io.dustin.apps.board.api.community.request.query.CommentDetailQuery
+import io.dustin.apps.board.api.community.request.query.PostingDetailQuery
 import io.dustin.apps.board.api.usecase.community.comment.DeleteCommentUseCase
 import io.dustin.apps.board.api.usecase.community.comment.ModifyCommentUseCase
 import io.dustin.apps.board.api.usecase.community.comment.ReadCommentUseCase
 import io.dustin.apps.board.api.usecase.community.comment.WriteCommentUseCase
 import io.dustin.apps.board.domain.community.comment.model.dto.CommentDto
 import io.dustin.apps.common.code.CommonMessage
-import io.dustin.apps.common.exception.BadRequestParameterException
 import io.dustin.apps.common.model.QueryPage
 import io.dustin.apps.common.model.ResponseWithScroll
 import io.dustin.apps.common.model.response.CommonResponse
 import io.dustin.apps.common.model.response.ResultResponse
+import io.dustin.apps.common.model.response.ResultResponsePagination
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
@@ -32,69 +36,67 @@ class CommentController (
     private val deleteCommentUseCase: DeleteCommentUseCase,
 
     ) {
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/{postingId}/all")
-//    @Operation(
-//        summary = "댓글 API",
-//        description = "특정 게시물에 대한 모든 댓글을 가져온다."
-//    )
-//    fun commentListByPosting(
-//        @PathVariable("postingId") postingId: Long,
-//        queryPage: QueryPage
-//    ): ResponseWithScroll<*> {
-//        return readCommentUseCase.execute(postingId, queryPage)
-//    }
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/all")
+    @Operation(
+        summary = "댓글 리스트 API",
+        description = "특정 게시물에 대한 모든 댓글을 가져온다."
+    )
+    fun commentListByPosting(
+        @RequestBody @Valid query: PostingDetailQuery
+    ): ResultResponsePagination<CommentDto> {
+        return readCommentUseCase.execute(query)
+    }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{commentId}")
+    @PostMapping("/detail")
     @Operation(
         summary = "댓글 상세보기 API",
         description = "하나의 댓글에 대한 세부사항을 가져온다"
     )
-    fun replyListByComment(@PathVariable("commentId") commentId: Long, queryPage: QueryPage): ResponseWithScroll<*> {
-        return readCommentUseCase.replyListByComment(commentId, queryPage)
+    fun replyListByComment(
+        @RequestBody @Valid query: CommentDetailQuery
+    ): ResultResponsePagination<CommentDto> {
+        return readCommentUseCase.replyListByComment(query)
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("create")
     @Operation(
-        summary = "게시물 관련 API",
-        description = "작성된 모든 게시물을 가져온다."
+        summary = "댓글 작성 API",
+        description = "댓글을 작성한다"
     )
     fun createComment(
-        @PathVariable("postingId") postingId: Long,
         @RequestBody @Valid command: CommentCreateCommand
     ): ResultResponse<CommentDto> {
         /**
          * 해당 게시물에 댓글 수 증가로직 추가
          */
-        return writeCommentUseCase.execute(command.userId, postingId, command.replyId, command.content)
+        return writeCommentUseCase.execute(command)
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PatchMapping("/{commentId}")
+    @PatchMapping("/modify")
     @Operation(
         summary = "댓글 수정 관련 API",
         description = "댓글을 수정한다."
     )
     fun modifyComment(
-        @PathVariable("commentId") commentId: Long,
-        @RequestBody @Valid command: CommentUpdateCommand
+        @RequestBody @Valid command: CommentModifyCommand
     ): ResultResponse<CommentDto> {
-        return modifyCommentUseCase.execute(command.userId, commentId, command.content)
+        return modifyCommentUseCase.execute(command)
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{commentId}/user/{userId}")
+    @DeleteMapping("/delete")
     @Operation(
         summary = "댓글 삭제 관련 API",
         description = "댓글을 삭제한다"
     )
     fun deleteComment(
-        @PathVariable("commentId") commentId: Long,
-        @PathVariable("userId") userId: Long,
+        @RequestBody @Valid command: CommentDeleteCommand
     ): CommonResponse {
-        deleteCommentUseCase.execute(userId, commentId)
+        deleteCommentUseCase.execute(command)
         return CommonResponse(
             code = HttpStatus.OK.value(),
             message = CommonMessage.SUCCESS.code,

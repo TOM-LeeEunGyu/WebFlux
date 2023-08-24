@@ -5,7 +5,8 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 
-data class AnswerCommand(
+@Schema(description = "답변 작성 요청 객체")
+data class AnswerCreateCommand(
 
     @Schema(description = "답글을 작성자의  adminId", example = "1")
     @field:Min(1, message = "adminId는 필수입니다. 최소값은 1입니다.")

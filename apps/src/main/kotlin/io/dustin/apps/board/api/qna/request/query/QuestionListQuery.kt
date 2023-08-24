@@ -3,6 +3,7 @@ package io.dustin.apps.board.api.qna.request.query
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Min
 
+@Schema(description = "질문 리스트 요청 객체")
 data class QuestionListQuery(
 
     @Schema(description = "유저 고유 id 값", example = "1")

@@ -1,6 +1,6 @@
 package io.dustin.apps.board.api.qna
 
-import io.dustin.apps.board.api.qna.request.command.QuestionCommand
+import io.dustin.apps.board.api.qna.request.command.QuestionCreateCommand
 import io.dustin.apps.board.api.qna.request.command.QuestionDeleteCommand
 import io.dustin.apps.board.api.qna.request.command.QuestionModifyCommand
 import io.dustin.apps.board.api.qna.request.query.QuestionDetailQuery
@@ -60,7 +60,7 @@ class QuestionController (
         summary = "1:1 문의의 질문을 작성한다",
         description = "1:1 문의의 질문을 작성한다"
     )
-    fun createQuestion(@RequestBody @Valid command: QuestionCommand): ResultResponse<QuestionDto> {
+    fun createQuestion(@RequestBody @Valid command: QuestionCreateCommand): ResultResponse<QuestionDto> {
         return writeQuestionUseCase.execute(command)
     }
 

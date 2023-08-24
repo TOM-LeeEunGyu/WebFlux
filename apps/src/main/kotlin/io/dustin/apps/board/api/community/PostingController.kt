@@ -2,7 +2,7 @@ package io.dustin.apps.board.api.community
 
 import io.dustin.apps.board.api.community.request.command.PostingCreateCommand
 import io.dustin.apps.board.api.community.request.command.PostingDeleteCommand
-import io.dustin.apps.board.api.community.request.command.PostingUpdateCommand
+import io.dustin.apps.board.api.community.request.command.PostingModifyCommand
 import io.dustin.apps.board.api.community.request.query.AllPostingQuery
 import io.dustin.apps.board.api.community.request.query.PostingDetailQuery
 import io.dustin.apps.board.api.usecase.community.posting.DeletePostingUseCase
@@ -38,7 +38,7 @@ class PostingController (
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/all")
     @Operation(
-        summary = "게시물 관련 API",
+        summary = "게시물 리스트 가져오기 API",
         description = "작성된 모든 게시물을 가져온다."
     )
     fun allPostings(@RequestBody @Valid query: AllPostingQuery): ResultResponsePagination<PostingListDto> {
@@ -48,37 +48,45 @@ class PostingController (
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/detail")
     @Operation(
-        summary = "게시물 관련 API",
+        summary = "게시물 상세보기 API",
         description = "특정 게시물을 가져온다."
     )
     fun postingDetail(@RequestBody @Valid query: PostingDetailQuery): ResultResponse<PostingDetailDto> {
         return readPostingUseCase.postingDetail(query)
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/create")
-    fun createPosting(@RequestBody @Valid command: PostingCreateCommand): CommonResponse {
-        writePostingUseCase.execute(command.userId, command.subject, command.content)
-        return CommonResponse(
-            code = HttpStatus.OK.value(),
-            message = CommonMessage.SUCCESS.code,
-            timestamp = LocalDateTime.now()
-        )
+    @Operation(
+        summary = "게시물 생성 API",
+        description = "게시물을 작성한다"
+    )
+    fun createPosting(@RequestBody @Valid command: PostingCreateCommand): ResultResponse<PostingDto> {
+        return writePostingUseCase.execute(command.userId, command.subject, command.content)
     }
 
-    @PatchMapping("/{postingId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/modify")
+    @Operation(
+        summary = "게시물 수정 API",
+        description = "게시물을 수정한다."
+    )
     fun modifyPosting(
-        @PathVariable("postingId") postingId: Long,
-        @RequestBody @Valid command: PostingUpdateCommand,
+        @RequestBody @Valid command: PostingModifyCommand,
     ): ResultResponse<PostingDto> {
-        return modifyPostingUseCase.execute(command.userId, postingId, command.subject, command.content)
+        return modifyPostingUseCase.execute(command.userId, command.postingId, command.subject, command.content)
     }
 
-    @DeleteMapping("/{postingId}")
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/delete")
+    @Operation(
+        summary = "게시물 삭제 API",
+        description = "게시물을 삭제한다"
+    )
     fun deletePosting(
-        @PathVariable("postingId") postingId: Long,
         @RequestBody @Valid command: PostingDeleteCommand,
     ): CommonResponse {
-        deletePostingUseCase.execute(command.userId, postingId)
+        deletePostingUseCase.execute(command.userId, command.postingId)
         return CommonResponse(
             code = HttpStatus.OK.value(),
             message = CommonMessage.SUCCESS.code,

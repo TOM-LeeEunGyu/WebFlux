@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 
+@Schema(description = "질문 상세보기 요청 객체")
 data class QuestionDetailQuery(
 
     @Schema(description = "유저 고유 id 값", example = "1")

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 
+@Schema(description = "질문 수정 요청 객체")
 data class QuestionModifyCommand(
 
     @Schema(description = "유저 고유 id 값", example = "1")

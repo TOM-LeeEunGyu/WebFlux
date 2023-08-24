@@ -1,5 +1,6 @@
 package io.dustin.apps.board.api.usecase.community.comment
 
+import io.dustin.apps.board.api.community.request.command.CommentCreateCommand
 import io.dustin.apps.board.domain.community.comment.model.Comment
 import io.dustin.apps.board.domain.community.comment.model.dto.CommentDto
 import io.dustin.apps.board.domain.community.comment.service.WriteCommentService
@@ -14,9 +15,9 @@ class WriteCommentUseCase (
     private val writePostingService: WritePostingService
 
 ) {
-    fun execute(userId: Long, postingId: Long, reply: Long?, content: String): ResultResponse<CommentDto> {
-        val comment: Comment = writeCommentService.create(userId, postingId, reply, content)
-        writePostingService.commentCount(postingId)
+    fun execute(command: CommentCreateCommand): ResultResponse<CommentDto> {
+        val comment: Comment = writeCommentService.create(command.userId, command.postingId, command.replyId, command.content)
+        writePostingService.commentCount(command.postingId)
         var result = CommentDto.from(comment)
         return ResultResponse.of(result)
     }

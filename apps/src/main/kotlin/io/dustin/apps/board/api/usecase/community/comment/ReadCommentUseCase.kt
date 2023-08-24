@@ -1,6 +1,8 @@
 package io.dustin.apps.board.api.usecase.community.comment
 
 import ResponseWithScrollSetting.getCountByPagingInfo
+import io.dustin.apps.board.api.community.request.query.AllCommentQuery
+import io.dustin.apps.board.api.community.request.query.CommentDetailQuery
 import io.dustin.apps.board.api.community.request.query.PostingDetailQuery
 import io.dustin.apps.board.domain.community.comment.model.dto.CommentDto
 import io.dustin.apps.board.domain.community.comment.service.ReadCommentService
@@ -48,14 +50,35 @@ class ReadCommentUseCase (
 
     }
 
-    fun replyListByComment(commentId: Long, queryPage: QueryPage): ResponseWithScroll<List<CommentDto>> {
+    fun replyListByComment(query: CommentDetailQuery): ResultResponsePagination<CommentDto> {
 
-        val realSize: Long = queryPage.size
-        val querySize = realSize + 1
         val userId: Long = 1
 
-        val result: List<CommentDto> = readCommentService.replyListByComment(userId, commentId, querySize, queryPage.nextId)
-        val cbi: CountByPagingInfo<CommentDto> = getCountByPagingInfo(result, realSize)
-        return ResponseWithScroll.from(cbi.result, cbi.isLast, cbi.nextId)
+        val list: List<CommentDto> = readCommentService.replyListByComment(userId, query.commentId, query.recordsCount, query.nextId)
+        if(list.isEmpty()) {
+            return ResultResponsePagination.of(
+                last = true,
+                recordsCount = 0,
+                data = list,
+            )
+        }
+        val result = list.take((query.recordsCount).toInt())
+
+        val isLast = list.size <= query.recordsCount.toInt()
+
+        val nextId = if (!isLast) {
+            result.lastAt().id
+        } else {
+            null
+        }
+
+        return ResultResponsePagination.of(
+            nextId = nextId,
+            last = isLast,
+            recordsCount = result.size.toLong(),
+            data = result,
+        )
     }
+
+
 }

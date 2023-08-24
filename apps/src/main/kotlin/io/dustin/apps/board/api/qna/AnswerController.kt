@@ -1,6 +1,6 @@
 package io.dustin.apps.board.api.qna
 
-import io.dustin.apps.board.api.qna.request.command.AnswerCommand
+import io.dustin.apps.board.api.qna.request.command.AnswerCreateCommand
 import io.dustin.apps.board.api.qna.request.command.AnswerDeleteCommand
 import io.dustin.apps.board.api.qna.request.command.AnswerModifyCommand
 import io.dustin.apps.board.api.usecase.qna.answer.DeleteAnswerUseCase
@@ -8,7 +8,6 @@ import io.dustin.apps.board.api.usecase.qna.answer.ModifyAnswerUseCase
 import io.dustin.apps.board.api.usecase.qna.answer.WriteAnswerUseCase
 import io.dustin.apps.board.domain.qna.answer.model.dto.AnswerDto
 import io.dustin.apps.common.code.CommonMessage
-import io.dustin.apps.common.exception.BadRequestParameterException
 import io.dustin.apps.common.model.response.CommonResponse
 import io.dustin.apps.common.model.response.ResultResponse
 import io.swagger.v3.oas.annotations.Operation
@@ -38,7 +37,7 @@ class AnswerController (
         description = "1:1 문의의 답변을 작성한다"
     )
     fun createAnswer(
-        @RequestBody @Valid command: AnswerCommand
+        @RequestBody @Valid command: AnswerCreateCommand
     ): ResultResponse<AnswerDto> {
         return writeAnswerUseCase.execute(command)
     }

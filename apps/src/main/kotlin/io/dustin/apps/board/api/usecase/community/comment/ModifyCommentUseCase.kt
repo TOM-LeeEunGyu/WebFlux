@@ -1,5 +1,6 @@
 package io.dustin.apps.board.api.usecase.community.comment
 
+import io.dustin.apps.board.api.community.request.command.CommentModifyCommand
 import io.dustin.apps.board.domain.community.comment.model.Comment
 import io.dustin.apps.board.domain.community.comment.model.dto.CommentDto
 import io.dustin.apps.board.domain.community.comment.service.ReadCommentService
@@ -17,9 +18,9 @@ class ModifyCommentUseCase (
 
     ) {
 
-    fun execute(userId: Long, commentId: Long, content: String): ResultResponse<CommentDto> {
-        val comment: Comment = readCommentService.findByIdOrThrow(commentId)
-        writeCommentService.updateContent(comment, content)
+    fun execute(command: CommentModifyCommand): ResultResponse<CommentDto> {
+        val comment: Comment = readCommentService.findByIdOrThrow(command.commentId)
+        writeCommentService.updateContent(comment, command.content)
         val result = CommentDto.from(comment)
         return ResultResponse.of(result)
     }

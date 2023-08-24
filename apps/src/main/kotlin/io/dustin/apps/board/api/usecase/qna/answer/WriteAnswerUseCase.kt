@@ -1,6 +1,6 @@
 package io.dustin.apps.board.api.usecase.qna.answer
 
-import io.dustin.apps.board.api.qna.request.command.AnswerCommand
+import io.dustin.apps.board.api.qna.request.command.AnswerCreateCommand
 import io.dustin.apps.board.domain.qna.answer.model.Answer
 import io.dustin.apps.board.domain.qna.answer.model.dto.AnswerDto
 import io.dustin.apps.board.domain.qna.answer.service.WriteAnswerService
@@ -14,7 +14,7 @@ class WriteAnswerUseCase (
 ) {
 
     @Transactional
-    fun execute(command: AnswerCommand): ResultResponse<AnswerDto> {
+    fun execute(command: AnswerCreateCommand): ResultResponse<AnswerDto> {
         val answer: Answer = writeAnswerService.create(command.adminId, command.questionId, command.content)
         val result = AnswerDto.from(answer)
         return ResultResponse.of(result)

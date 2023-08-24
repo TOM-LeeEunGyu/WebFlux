@@ -5,20 +5,20 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 
-@Schema(description = "게시물 작성 관련 요청 객체")
-data class PostingCreateCommand(
+@Schema(description = "댓글 수정 관련 요청 객체")
+class CommentModifyCommand(
 
-    @Schema(description = "유저 고유 id 값", example = "1")
+    @Schema(description = "댓글 작성자의  userId", example = "1")
     @field:Min(1, message = "userId는 필수입니다. 최소값은 1입니다.")
     val userId: Long,
 
-    @Schema(description = "질문 제목", example = "문의드립니다.")
-    @field:NotNull(message = "subject는 필수값 입니다.")
-    @field:NotBlank(message = "발행관리기관계좌번호 필수입니다.")
-    val subject: String,
+    @Schema(description = "댓글을 삭제할 commentId", example = "1")
+    @field:Min(1, message = "commentId는 필수입니다. 최소값은 1입니다.")
+    val commentId: Long,
 
-    @Schema(description = "질문 내용", example = "어쩌구 저쩌구 ~")
+    @Schema(description = "댓글 내용", example = "어쩌구 저쩌구 ~")
     @field:NotNull(message = "content는 필수입니다.")
     @field:NotBlank(message = "content는 필수입니다.")
     val content: String,
+
 )

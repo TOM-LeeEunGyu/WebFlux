@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull
 
+@Schema(description = "게시물 상세보기 요청 객체")
 data class PostingDetailQuery(
 
     @field:NotNull(message = "postingId는 필수값 입니다.")

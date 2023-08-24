@@ -1,12 +1,10 @@
 package io.dustin.apps.board.api.usecase.qna.question
 
-import io.dustin.apps.board.api.qna.request.command.QuestionCommand
 import io.dustin.apps.board.api.qna.request.command.QuestionModifyCommand
 import io.dustin.apps.board.domain.qna.question.model.Question
 import io.dustin.apps.board.domain.qna.question.model.dto.QuestionDto
 import io.dustin.apps.board.domain.qna.question.service.ReadQuestionService
 import io.dustin.apps.board.domain.qna.question.service.WriteQuestionService
-import io.dustin.apps.common.exception.DataNotFoundException
 import io.dustin.apps.common.model.response.ResultResponse
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
