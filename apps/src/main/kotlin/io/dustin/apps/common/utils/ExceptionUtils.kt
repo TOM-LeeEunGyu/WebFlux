@@ -1,6 +1,7 @@
 package io.dustin.apps.common.utils
 
 import io.dustin.apps.common.exception.DataNotFoundException
+import io.dustin.apps.common.exception.DuplicatedException
 import io.dustin.apps.common.exception.NotFoundEntityException
 
 /**
@@ -38,5 +39,24 @@ fun dataNotFound(message: String): Nothing {
         dataNotFound()
     } else {
         throw DataNotFoundException(message)
+    }
+}
+
+/**
+ * 이미 존재하는 데이터(메세지 없음)
+ */
+fun duplicate(): Nothing {
+    throw DuplicatedException()
+}
+
+
+/**
+ * 이미 존재하는 데이터(메세지 있음)
+ */
+fun duplicate(message: String): Nothing {
+    if (message == null) {
+        duplicate()
+    } else {
+        throw DuplicatedException(message)
     }
 }

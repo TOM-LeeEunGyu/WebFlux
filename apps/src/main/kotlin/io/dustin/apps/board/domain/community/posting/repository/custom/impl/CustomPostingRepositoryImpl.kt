@@ -77,11 +77,6 @@ class CustomPostingRepositoryImpl(
         val fromUserIds = readBlockedUserService.fromUserIds(userId)
 
         booleanBuilder.and(posting.userId.notIn(toUserIds).and(posting.userId.notIn(fromUserIds)))
-        nextId?.let {
-            if(it != null){
-                booleanBuilder.and(posting.id.lt(it))
-            }
-        }
         return  query.select(
             constructor(
                 PostingListDto::class.java,
@@ -158,10 +153,6 @@ class CustomPostingRepositoryImpl(
 
     override fun getMyPostingList(userId: Long, nextId: Long?, size: Long): List<PostingListDto> {
         val booleanBuilder = BooleanBuilder()
-        nextId?.let {
-            booleanBuilder.and(posting.id.lt(it))
-        }
-
         val jPAQuery = query.select(
             constructor(
                 PostingListDto::class.java,

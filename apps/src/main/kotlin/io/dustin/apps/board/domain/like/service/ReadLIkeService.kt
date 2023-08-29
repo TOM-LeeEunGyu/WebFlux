@@ -13,6 +13,16 @@ class ReadLIkeService (
     private val likeRepository: LikeRepository
 
 ) {
+
+    /**
+     * 좋아요 객체 조회
+     */
+    @Transactional(readOnly = true)
+    fun getLikeObj(userId: Long, boardId: Long, boardType: BoardType): Like? {
+        return likeRepository.findByUsers(userId, boardId, boardType)
+
+    }
+
     /**
      * 좋아요 객체 조회
      */

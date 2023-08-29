@@ -9,6 +9,13 @@ import org.springframework.stereotype.Service
 class ReadBlockedUserService(
     private val blockedUserRepository: BlockedUserRepository,
 ) {
+    /**
+     * 차단 객체(단일) 가져오기
+     */
+    fun getBlockedObj(fromUserId: Long, toUserId: Long): BlockedUser? {
+        return blockedUserRepository.findByFromUserIdAndToUserId(fromUserId, toUserId)
+    }
+
 
     /**
      * 차단 객체(단일) 가져오기

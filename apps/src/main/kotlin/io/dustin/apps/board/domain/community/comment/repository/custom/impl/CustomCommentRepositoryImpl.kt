@@ -31,8 +31,7 @@ class CustomCommentRepositoryImpl(
                 comment.postingId,
                 comment.replyId,
                 comment.createdAt
-            )
-        )
+            ))
             .distinct()
             .from(posting)
             .leftJoin(comment).on(comment.postingId.eq(posting.id))
@@ -67,8 +66,7 @@ class CustomCommentRepositoryImpl(
                 comment.postingId,
                 comment.replyId,
                 comment.createdAt
-            )
-        )
+            ))
             .from(comment)
             .leftJoin(self).on(self.replyId.eq(comment.id).and(self.replyId.isNotNull))
             .leftJoin(posting).on(comment.postingId.eq(posting.id))

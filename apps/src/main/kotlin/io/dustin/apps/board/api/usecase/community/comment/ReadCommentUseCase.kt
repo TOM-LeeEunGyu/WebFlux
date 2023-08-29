@@ -24,6 +24,7 @@ class ReadCommentUseCase (
         val userId: Long = 1
 
         val list = readCommentService.getCommentsByPosting(userId, query.postingId, query.recordsCount, query.nextId)
+        println("몇개나 들어있을까요" + list.size)
         if(list.isEmpty()) {
             return ResultResponsePagination.of(
                 last = true,
@@ -55,6 +56,7 @@ class ReadCommentUseCase (
         val userId: Long = 1
 
         val list: List<CommentDto> = readCommentService.replyListByComment(userId, query.commentId, query.recordsCount, query.nextId)
+        println("몇개나 들어있을까요" + list.size)
         if(list.isEmpty()) {
             return ResultResponsePagination.of(
                 last = true,

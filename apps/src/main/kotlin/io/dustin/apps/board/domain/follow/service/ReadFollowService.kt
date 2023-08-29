@@ -14,6 +14,13 @@ class ReadFollowService (
     /**
      * 팔로우 객체(단일)을 가져온다
      */
+    fun getFollowObj(followerId: Long, followingId: Long): Follow? {
+        return followRepository.findByFollowerIdAndFollowingId(followerId, followingId)
+    }
+
+    /**
+     * 팔로우 객체(단일)을 가져온다
+     */
     fun getFollow(followerId: Long, followingId: Long): Follow {
         val errorMessage = "조회된 정보가 없습니다."
         return followRepository.findByFollowerIdAndFollowingId(followerId, followingId) ?: notFoundEntity(errorMessage)

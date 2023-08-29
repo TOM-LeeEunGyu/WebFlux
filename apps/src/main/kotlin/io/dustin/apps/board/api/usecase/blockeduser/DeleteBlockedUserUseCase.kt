@@ -15,11 +15,7 @@ class DeleteBlockedUserUseCase (
     private val readBlockedUserService: ReadBlockedUserService,
 ) {
 
-    @Throws(
-        RuntimeException::class,
-        ResponseStatusException::class,
-        DataNotFoundException::class,
-    )
+
     @Transactional
     fun execute(fromUserId: Long, toUserId: Long): BlockedUserDto {
         val blockedUser = readBlockedUserService.getBlockedUser(fromUserId, toUserId)

@@ -15,6 +15,14 @@ class ReadBookmarkService (
     /**
      * 북마크 객체(단일) 조회
      */
+    fun getBookmarkObj(userId: Long, boardId: Long): Bookmark? {
+        return bookmarkRepository.findByUserIdAndBoardId(userId, boardId)
+    }
+
+
+    /**
+     * 북마크 객체(단일) 조회
+     */
     fun getBookmark(userId: Long, boardId: Long): Bookmark {
         val errorMessage = "조회된 정보가 없습니다."
         return bookmarkRepository.findByUserIdAndBoardId(userId, boardId) ?: notFoundEntity(errorMessage)
