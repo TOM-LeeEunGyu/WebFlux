@@ -56,3 +56,18 @@ feign:
         connectTimeout: 10000 # 10?
         readTimeout: 10000 # 10?
         url: http://localhost:8881/api/v1/feign
+
+# 실무에서는 private 하게 관리하자
+jwt:
+  issuer: basquiat
+  subject: musicshop
+  # 초단위 3600 -> 1시간
+  expired-at: 30
+  #expired-at: 60
+  # Jean-Michel Basquiat가 사망한 날짜
+  secret: dustin19880812
+  prefix: Bearer
+
+cached:
+  # 초로 받는다.
+  expired-at: 20

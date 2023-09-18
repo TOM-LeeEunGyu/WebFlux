@@ -35,6 +35,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.4")
@@ -43,6 +44,9 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 	runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.7.0")
 
+	// jwt
+	implementation("org.springframework.security:spring-security-crypto")
+	implementation("com.auth0:java-jwt:4.4.0")
 
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -54,6 +58,9 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 
 	kapt("org.springframework.boot:spring-boot-configuration-processor")
+
+	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
 
 
