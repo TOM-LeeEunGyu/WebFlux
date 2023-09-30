@@ -59,6 +59,11 @@ Using Controller
     시작부터 막혔다 springboot postgre-2dbc 환경세팅이 잘 되지 않는다.. 우선 코드부터 따라해보자..(해결)
 
     09/29
+    기본 도메인 작성 및
+    
+    09/30 
+    테스트 코드 작성 중 rsaPublicKey 에러 발생 (해결: db연결이 오류였음)
+    테스트 코드 작성 중 does not declare any static, non-private, non-final, nested classes annotated with @Configuration. 에러 발생
 
 
 

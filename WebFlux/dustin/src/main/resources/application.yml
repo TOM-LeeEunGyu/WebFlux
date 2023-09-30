@@ -10,7 +10,7 @@ spring:
     r2dbc:
         url: r2dbc:proxy:mysql://${mysql.host}:${mysql.port}/${mysql.database}?proxyListener=${mysql.proxy-listener}&${mysql.option}
 #        url: r2dbc:proxy:mysql://localhost:3306/dusitn
-        username: dustin
+        username: root
         password: 1234
         pool:
             enabled: true
