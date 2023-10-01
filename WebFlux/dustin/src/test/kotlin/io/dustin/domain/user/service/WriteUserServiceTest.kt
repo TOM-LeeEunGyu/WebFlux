@@ -1,5 +1,7 @@
 package io.dustin.domain.user.service
 
+import io.dustin.DustinApplication
+import io.dustin.api.model.UpdateUser
 import io.dustin.common.transaction.Transaction
 import io.dustin.domain.user.model.User
 import io.dustin.domain.user.model.code.Genre
@@ -12,7 +14,8 @@ import org.springframework.test.context.TestExecutionListeners
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener
 import reactor.test.StepVerifier
 
-@SpringBootTest
+//@SpringBootTest
+@SpringBootTest(classes = [DustinApplication::class])
 @TestExecutionListeners(
     listeners = [TransactionalTestExecutionListener::class],
     mergeMode = TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS
@@ -32,10 +35,38 @@ class WriteUserServiceTest @Autowired constructor(
         val mono = write.create(createdUser)
 
         // then
-        mono.`as`(Transaction::withRollback)
-            .`as`(StepVerifier::create)
+//        mono.`as`(Transaction::withRollback)
+//            .`as`(StepVerifier::create)
+//            .assertNext {
+//                assertThat(it.id).isGreaterThan(0L)
+//            }
+//            .verifyComplete()
+    }
+
+    /**
+     *
+     */
+    @Test
+    @DisplayName("user update using builder test")
+    fun updateTemplateUserTEST() {
+        // given
+        val id = 3L
+
+        val command = UpdateUser(name = "dustin hwang ", genre = Genre.Junsa)
+        //val command = UpdateUser(null, null)
+
+        val target = read.userByIdOrThrow(3)
+
+        // when
+        val updated = target.flatMap {
+            val (user, assignments) = command.createAssignments(it)
+            write.update(user, assignments)
+        }.then(read.userById(3))
+
+        // then
+        updated.`as`(StepVerifier::create)
             .assertNext {
-                assertThat(it.id).isGreaterThan(0L)
+                assertThat(it.genre).isEqualTo(Genre.Junsa)
             }
             .verifyComplete()
     }

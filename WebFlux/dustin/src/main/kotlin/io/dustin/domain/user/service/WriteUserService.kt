@@ -16,7 +16,7 @@ class WriteUserService(
     }
 
     fun update(user: User, assignments: MutableMap<SqlIdentifier, Any>): Mono<User> {
-        return userRepository.updateMusician(user, assignments)
+        return userRepository.updateUser(user, assignments)
     }
 
 }

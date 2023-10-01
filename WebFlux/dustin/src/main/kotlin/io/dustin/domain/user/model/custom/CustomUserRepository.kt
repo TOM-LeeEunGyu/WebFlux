@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono
 
 interface CustomUserRepository {
 
-    fun updateMusician(user: User, assignments: MutableMap<SqlIdentifier, Any>): Mono<User>
+    fun updateUser(user: User, assignments: MutableMap<SqlIdentifier, Any>): Mono<User>
 
     fun usersByQuery(match: Query): Flux<User>
 
