@@ -71,9 +71,13 @@ Using Controller
     usecase 작성 및 usecase 테스트 
     ReadUserServiceTest 에러(해결: 오타)
 
-
-
-
+    10/03
+    controller 작성 및 테스트 코드 작성 완료
+    어찌어찌 따라하긴 했지만 이해하지 못하는것 투성이다(동작원리에 대한 이해가 부족한듯)
+    이해 후 다음 챕터로 넘아가도록 하자
+    모르는 부분
+    1. matrixVariable처리 관련 부분
+    2. CustomUserRepositoryImpl update 관련 부분(assignments: MutableMap<SqlIdentifier, Any> 어떻게 작동하는지 모르겠음)
 
 
 

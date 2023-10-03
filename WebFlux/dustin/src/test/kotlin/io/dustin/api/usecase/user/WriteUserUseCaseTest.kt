@@ -1,4 +1,4 @@
-package io.dustin.api.usecase
+package io.dustin.api.usecase.user
 
 import io.dustin.api.model.CreateUser
 import io.dustin.api.model.UpdateUser
