@@ -4,7 +4,7 @@ import io.dustin.DustinApplication
 import io.dustin.api.model.UpdateUser
 import io.dustin.common.transaction.Transaction
 import io.dustin.domain.user.model.User
-import io.dustin.domain.user.model.code.Genre
+import io.dustin.domain.user.model.code.Job
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -29,7 +29,7 @@ class WriteUserServiceTest @Autowired constructor(
     @DisplayName("user create test")
     fun createUserTEST() {
         // given
-        val createdUser = User(name = "dustin", genre = Genre.Dojuk)
+        val createdUser = User(name = "dustin2", job = Job.Dojuk)
 
         // when
         val mono = write.create(createdUser)
@@ -52,7 +52,7 @@ class WriteUserServiceTest @Autowired constructor(
         // given
         val id = 3L
 
-        val command = UpdateUser(name = "dustin hwang ", genre = Genre.Junsa)
+        val command = UpdateUser(name = "dustin hwang ", job = Job.Junsa)
         //val command = UpdateUser(null, null)
 
         val target = read.userByIdOrThrow(3)
@@ -66,7 +66,7 @@ class WriteUserServiceTest @Autowired constructor(
         // then
         updated.`as`(StepVerifier::create)
             .assertNext {
-                assertThat(it.genre).isEqualTo(Genre.Junsa)
+                assertThat(it.job).isEqualTo(Job.Junsa)
             }
             .verifyComplete()
     }

@@ -2,7 +2,7 @@ package io.dustin.api.controller
 
 import io.dustin.api.model.CreateUser
 import io.dustin.api.model.UpdateUser
-import io.dustin.domain.user.model.code.Genre
+import io.dustin.domain.user.model.code.Job
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,7 +22,7 @@ class UserControllerTest @Autowired constructor(
     @DisplayName("user create test")
     fun createMusicianTEST() {
         // given
-        val createUser = CreateUser(name = "dustin", genre = Genre.Dojuk)
+        val createUser = CreateUser(name = "dustin", job = Job.Dojuk)
 
         /**
          * 비동기적으로 요청하는 non-blocking 처리 방식
@@ -48,7 +48,7 @@ class UserControllerTest @Autowired constructor(
     @DisplayName("user update test")
     fun updateUserTEST() {
         // given
-        val update = UpdateUser(name = null, genre = Genre.Junsa)
+        val update = UpdateUser(name = null, job = Job.Junsa)
 
         // when
         webTestClient.patch()
@@ -61,7 +61,7 @@ class UserControllerTest @Autowired constructor(
             .expectHeader().contentType(MediaType.APPLICATION_JSON)
             .expectBody()
             // then
-            .jsonPath("$.genre").isEqualTo("Junsa")
+            .jsonPath("$.job").isEqualTo("Junsa")
     }
 
     @Test

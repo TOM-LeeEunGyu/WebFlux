@@ -3,7 +3,7 @@ package io.dustin.api.usecase.user
 import io.dustin.api.model.CreateUser
 import io.dustin.api.model.UpdateUser
 import io.dustin.api.usercase.user.WriteUserUseCase
-import io.dustin.domain.user.model.code.Genre
+import io.dustin.domain.user.model.code.Job
 import io.dustin.domain.user.service.ReadUserService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
@@ -28,14 +28,14 @@ class WriteUserUseCaseTest @Autowired constructor(
     @DisplayName("user insert useCase test")
     fun insertUseCaseTEST() {
         // given
-        val command = CreateUser(name = "dustin jjang jjang jjang", genre = Genre.Dojuk)
+        val command = CreateUser(name = "dustin jjang jjang jjang", job = Job.Dojuk)
 
         // when
         val mono = writeUseCase.insert(command)
         // then
         mono.`as`(StepVerifier::create)
             .assertNext {
-                assertThat(it.genre).isEqualTo(Genre.Dojuk)
+                assertThat(it.job).isEqualTo(Job.Dojuk)
             }
             .verifyComplete()
     }
@@ -45,7 +45,7 @@ class WriteUserUseCaseTest @Autowired constructor(
     fun updateUseCaseTEST() {
         // given
         val id = 4L
-        val command = UpdateUser(name = "jjang jjang jjang dustin", genre = null)
+        val command = UpdateUser(name = "jjang jjang jjang dustin", job = null)
 
         // when
         val mono = writeUseCase.update(id, command)

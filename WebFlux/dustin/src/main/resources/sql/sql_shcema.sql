@@ -1,7 +1,7 @@
 CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `genre` varchar(50) DEFAULT NULL,
+  `job` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

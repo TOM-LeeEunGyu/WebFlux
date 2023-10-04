@@ -3,7 +3,7 @@ package io.dustin.domain.user.model
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
-import io.dustin.domain.user.model.code.Genre
+import io.dustin.domain.user.model.code.Job
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
@@ -17,7 +17,7 @@ class User(
     @Id
     var id: Long? = null,
     var name: String,
-    var genre: Genre?,
+    var job: Job?,
     @Column("created_at")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     var createdAt: LocalDateTime? = now(),

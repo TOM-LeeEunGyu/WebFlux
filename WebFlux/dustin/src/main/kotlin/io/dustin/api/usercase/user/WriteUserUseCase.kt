@@ -16,7 +16,7 @@ class WriteUserUseCase(
 ) {
 
     fun insert(command: CreateUser): Mono<User> {
-        val created = User(name = command.name, genre = command.genre)
+        val created = User(name = command.name, job = command.job)
         return write.create(created)
     }
 
