@@ -6,8 +6,8 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 interface CustomMugiRepository {
-    fun updateRecord(mugi: Mugi, assignments: MutableMap<SqlIdentifier, Any>): Mono<Record>
-    fun findAllRecords(whereClause: String = "", orderClause: String = "", limitClause: String = ""): Flux<Record>
+    fun updateMugi(mugi: Mugi, assignments: MutableMap<SqlIdentifier, Any>): Mono<Mugi>
+    fun findAllMugis(whereClause: String = "", orderClause: String = "", limitClause: String = ""): Flux<Mugi>
 
 
 }

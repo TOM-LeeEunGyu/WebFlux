@@ -20,7 +20,7 @@ class Mugi(
     var id: Long? = null,
 
     @Column("user_id")
-    var musicianId: Long,
+    var userId: Long,
 
     var title: String?,
 
