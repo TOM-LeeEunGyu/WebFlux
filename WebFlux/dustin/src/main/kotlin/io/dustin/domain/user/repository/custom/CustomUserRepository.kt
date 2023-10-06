@@ -1,4 +1,4 @@
-package io.dustin.domain.user.model.custom
+package io.dustin.domain.user.repository.custom
 
 import io.dustin.domain.user.model.User
 import org.springframework.data.relational.core.query.Query

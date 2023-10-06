@@ -1,7 +1,7 @@
-package io.dustin.domain.user.model.custom.impl
+package io.dustin.domain.user.repository.custom.impl
 
 import io.dustin.domain.user.model.User
-import io.dustin.domain.user.model.custom.CustomUserRepository
+import io.dustin.domain.user.repository.custom.CustomUserRepository
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate
 import org.springframework.data.relational.core.query.Criteria.where
 import org.springframework.data.relational.core.query.Query

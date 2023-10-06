@@ -1,7 +1,7 @@
 package io.dustin.domain.user.repository
 
 import io.dustin.domain.user.model.User
-import io.dustin.domain.user.model.custom.CustomUserRepository
+import io.dustin.domain.user.repository.custom.CustomUserRepository
 import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import reactor.core.publisher.Flux
