@@ -1,7 +1,7 @@
 package io.dustin.api.usercase.user
 
-import io.dustin.api.model.CreateUser
-import io.dustin.api.model.UpdateUser
+import io.dustin.api.usercase.user.model.CreateUser
+import io.dustin.api.usercase.user.model.UpdateUser
 import io.dustin.common.exception.BadParameterException
 import io.dustin.domain.user.model.User
 import io.dustin.domain.user.service.ReadUserService

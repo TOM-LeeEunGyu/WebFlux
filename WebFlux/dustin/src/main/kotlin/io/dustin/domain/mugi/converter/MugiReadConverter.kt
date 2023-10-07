@@ -1,28 +1,28 @@
-package io.dustin.domain.mugi.mapper
+package io.dustin.domain.mugi.converter
 
 import io.dustin.domain.mugi.model.Mugi
 import io.dustin.domain.mugi.model.code.ReleasedType
 import io.dustin.domain.user.model.User
 import io.dustin.domain.user.model.code.Job
 import io.r2dbc.spi.Row
-import io.r2dbc.spi.RowMetadata
-import org.springframework.stereotype.Component
+import org.springframework.core.convert.converter.Converter
+import org.springframework.data.convert.ReadingConverter
 import java.time.LocalDateTime
-import java.util.function.BiFunction
 
-@Component
-class MugiMapper: BiFunction<Row, RowMetadata, Mugi> {
-    override fun apply(row: Row, rowMetadata: RowMetadata): Mugi {
+@ReadingConverter
+class MugiReadConverter: Converter<Row, Mugi> {
+
+    override fun convert(row: Row): Mugi {
         val user = User(
-            name = row.get("musicianName", String::class.java)!!,
-            job = Job.valueOf(row.get("genre", String::class.java)!!),
+            name = row.get("userName", String::class.java)!!,
+            job = Job.valueOf(row.get("job", String::class.java)!!),
             createdAt = row.get("mCreatedAt", LocalDateTime::class.java),
             updatedAt = row.get("mUpdatedAt", LocalDateTime::class.java),
         )
 
         val mugi = Mugi(
             id = row.get("id", Long::class.javaObjectType)!!,
-            userId = row.get("user_id", Long::class.javaObjectType)!!,
+            userId = row.get("musician_id", Long::class.javaObjectType)!!,
             title = row.get("title", String::class.java),
             label = row.get("label", String::class.java),
             releasedType = ReleasedType.valueOf(row.get("released_type", String::class.java)!!),

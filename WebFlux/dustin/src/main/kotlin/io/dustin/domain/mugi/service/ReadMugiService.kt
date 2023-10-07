@@ -12,10 +12,10 @@ class ReadMugiService(
 
     fun mugiById(id: Long) = mugiRepository.findById(id)
     fun mugiByIdOrThrow(id: Long, message: String? = null) = mugiRepository.findByIdOrThrow(id, message)
-    fun mugiByMusicianId(musicianId: Long, pageable: Pageable) = mugiRepository.findByMusicianId(musicianId, pageable)
-    fun mugiCountByMusician(musicianId: Long) = mugiRepository.countByMusicianId(musicianId)
-    fun allRecords(whereClause: String = "",
+    fun mugiByUserId(userId: Long, pageable: Pageable) = mugiRepository.findByUserId(userId, pageable)
+    fun mugiCountByUser(userId: Long) = mugiRepository.countByUserId(userId)
+    fun allMugiss(whereClause: String = "",
                    orderClause: String = "",
-                   limitClause: String = "") = mugiRepository.findAllRecords(whereClause, orderClause, limitClause)
-    fun records() = mugiRepository.findRecords()
+                   limitClause: String = "") = mugiRepository.findAllMugis(whereClause, orderClause, limitClause)
+    fun mugis() = mugiRepository.findMugis()
 }

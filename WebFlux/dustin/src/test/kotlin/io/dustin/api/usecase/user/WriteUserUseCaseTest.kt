@@ -1,7 +1,7 @@
 package io.dustin.api.usecase.user
 
-import io.dustin.api.model.CreateUser
-import io.dustin.api.model.UpdateUser
+import io.dustin.api.usercase.user.model.CreateUser
+import io.dustin.api.usercase.user.model.UpdateUser
 import io.dustin.api.usercase.user.WriteUserUseCase
 import io.dustin.domain.user.model.code.Job
 import io.dustin.domain.user.service.ReadUserService

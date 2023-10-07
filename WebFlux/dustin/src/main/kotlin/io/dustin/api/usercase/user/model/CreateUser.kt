@@ -1,4 +1,4 @@
-package io.dustin.api.model
+package io.dustin.api.usercase.user.model
 
 import io.dustin.domain.user.model.code.Job
 import jakarta.validation.constraints.NotNull

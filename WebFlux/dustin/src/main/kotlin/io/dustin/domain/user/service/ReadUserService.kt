@@ -19,7 +19,7 @@ class ReadUserService(
 
     fun userById(id: Long) = userRepository.findById(id)
 
-    fun userByIdOrThrow(id: Long) = userRepository.findByIdOrThrow(id)
+    fun userByIdOrThrow(id: Long, message: String? = null) = userRepository.findByIdOrThrow(id,message)
 
     fun totalCount() = userRepository.count()
 

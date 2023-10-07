@@ -1,7 +1,7 @@
 package io.dustin.api.controller
 
-import io.dustin.api.model.CreateUser
-import io.dustin.api.model.UpdateUser
+import io.dustin.api.usercase.user.model.CreateUser
+import io.dustin.api.usercase.user.model.UpdateUser
 import io.dustin.domain.user.model.code.Job
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

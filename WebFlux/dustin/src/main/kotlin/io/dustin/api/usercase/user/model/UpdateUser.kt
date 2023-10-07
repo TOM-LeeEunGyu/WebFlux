@@ -1,4 +1,4 @@
-package io.dustin.api.model
+package io.dustin.api.usercase.user.model
 
 import io.dustin.common.exception.BadParameterException
 import io.dustin.domain.user.model.User
