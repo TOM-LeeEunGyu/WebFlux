@@ -19,6 +19,12 @@ R2dbcRepository는 ReactiveCrudRepository와 비슷하지만, 더 낮은 수준�
 Using Controller
 
     10/06
+    챕터당 브랜치 생성
+    main branch: 내용정리, 이해한 부분들, 해결과정 중심으로 기술한다
+
+    10/07 
+    usecase 코드 작성중 ... 이번 챕터에서는 코드를 전부 작성한 후 테스트를 진행 할 예정 
+
 
 
 
