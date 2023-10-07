@@ -53,36 +53,7 @@ WebFlux 란 client, server 에서 reactive 스타일의 어플리케이션의 �
     ➡️ 하지만 @MVC 방식에서 바로 WebFlux 로 이전하기에는 거부감이 있으니, 어노테이션을 사용하는 @MVC + webflux 의 비동기 및 논블러킹을 지원하는 방법도 Spring 에서는 지원한다고 합니다.
    (라고 블로그에서 말하고 있다. 하지만 아직까지 나에게 와닿지 않는다. 배달의 민족 가게노출 시스템에서 WebFlux를 사용한다고 한다  )
 
-
-Using Controller
-
-    09/28
-    시작부터 막혔다 springboot postgre-2dbc 환경세팅이 잘 되지 않는다.. 우선 코드부터 따라해보자..(해결)
-
-    09/29
-    도메인, 공통모듈 개발
     
-    09/30 
-    테스트 코드 작성 중 rsaPublicKey 에러 발생 (해결: db연결이 오류였음)
-    테스트 코드 작성 중 does not declare any static, non-private, non-final, nested classes annotated with @Configuration. 에러 발생(해결: @SpringBootTest(classes = [DustinApplication::class])
-
-    10/01
-    테스트 코드 작성중 <mysql-connection-1> Received an error message -> ErrorMessage(errorCode=1146, sqlState=#42S02, errorMessage=Table 'dustin.user' doesn't exist) (해결: 콘솔에서 user 테이블 생성)
-    usecase 작성 및 usecase 테스트 
-    ReadUserServiceTest 에러(해결: 오타)
-
-    10/03
-    controller 작성 및 테스트 코드 작성 완료
-    어찌어찌 따라하긴 했지만 이해하지 못하는것 투성이다(동작원리에 대한 이해가 부족한듯)
-    이해 후 다음 챕터로 넘아가도록 하자
-    모르는 부분
-    1. matrixVariable처리 관련 부분
-    2. CustomUserRepositoryImpl update 관련 부분(assignments: MutableMap<SqlIdentifier, Any> 어떻게 작동하는지 모르겠음)
-
-    10/09
-    챕터당 브랜치 생성
-    main branch: 내용정리, 이해한 부분들, 해결과정 중심으로 기술한다
-
 
 
 
