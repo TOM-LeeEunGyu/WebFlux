@@ -10,29 +10,29 @@ import org.springframework.data.relational.core.query.isEqual
  */
 enum class ConditionType(
     val code: String,
+    private val native: (String, WhereCondition) -> String,
     private val criteria: (WhereCondition) -> Criteria
 ) {
-    LTE("lte", { where(it.column).lessThanOrEquals(it.value)}),
-    LT("lt", { where(it.column).lessThan(it.value)}),
-    GTE("gte", { where(it.column).greaterThanOrEquals(it.value)}),
-    GT("gt", { where(it.column).greaterThan(it.value)}),
-    EQ("eq", { where(it.column).isEqual(it.value)}),
-    LIKE("like", { where(it.column).like("%${it.value}%")});
+    LTE("lte", { prefix, it -> "AND ${prefix}.${it.column} <= '${it.value}'" }, { where(it.column).lessThanOrEquals(it.value)}),
+    LT("lt", { prefix, it -> "AND ${prefix}.${it.column} < '${it.value}'" }, { where(it.column).lessThan(it.value)}),
+    GTE("gte", { prefix, it -> "AND ${prefix}.${it.column} >= '${it.value}'" }, { where(it.column).greaterThanOrEquals(it.value)}),
+    GT("gt", { prefix, it -> "AND ${prefix}.${it.column} > '${it.value}'" }, { where(it.column).greaterThan(it.value)}),
+    EQ("eq", { prefix, it -> "AND ${prefix}.${it.column} = '${it.value}'" }, { where(it.column).isEqual(it.value)}),
+    LIKE("like", { prefix, it -> "AND ${prefix}.${it.column} like '%${it.value}%'" }, { where(it.column).like("%${it.value}%")});
 
-    fun create(condition: WhereCondition): Criteria {
+    fun getCriteria(condition: WhereCondition): Criteria {
         return criteria(condition)
+    }
+
+    fun getNativeSql(prefix: String, condition: WhereCondition): String {
+        return native(prefix, condition)
     }
 
     companion object {
         /**
-         * null이면 illegalArgumentException을 던지고 있지만 ETC를 던져도 상관없다.
+         * null이면 EQ를 던진다.
          * @param code
          * @return ConditionType
-         *
-         * code 파라미터: 찾고자 하는 ConditionType 상수의 코드 문자열을 나타냅니다.
-         * values() 함수를 사용하여 ConditionType enum 클래스의 모든 상수를 배열로 가져옵니다.
-         * firstOrNull 함수를 사용하여 배열에서 주어진 조건을 만족하는 첫 번째 상수를 찾습니다. 여기서 조건은 conditionType.code가 code 파라미터와 같은지 (대소문자 무시) 확인하는 것입니다.
-         * 만약 조건을 만족하는 상수가 없을 경우, ?: 연산자를 사용하여 기본값으로 EQ 상수를 반환합니다. 이는 주어진 코드 문자열에 해당하는 조건이 없을 때 사용할 기본 조건을 정의하는 것입니다.
          */
         fun of(code: String): ConditionType = values().firstOrNull { conditionType-> conditionType.code.equals(code, ignoreCase = true) }
             ?: EQ

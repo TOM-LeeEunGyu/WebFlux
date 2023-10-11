@@ -22,7 +22,7 @@ class Mugi(
     @Column("user_id")
     var userId: Long,
 
-    var title: String?,
+    var name: String?,
 
     var label: String?,
 

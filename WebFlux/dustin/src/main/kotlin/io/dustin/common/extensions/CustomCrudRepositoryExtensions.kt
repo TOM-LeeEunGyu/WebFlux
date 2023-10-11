@@ -1,6 +1,6 @@
 package io.dustin.common.extensions
 
-import io.dustin.common.utils.CommonUtils.notFound
+import io.dustin.common.utils.notFound
 import org.springframework.data.r2dbc.repository.R2dbcRepository
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.switchIfEmpty

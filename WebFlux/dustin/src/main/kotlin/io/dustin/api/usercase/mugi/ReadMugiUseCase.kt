@@ -1,5 +1,7 @@
 package io.dustin.api.usercase.mugi
 
+import io.dustin.common.builder.createNativeSortLimitClause
+import io.dustin.common.builder.createNativeWhereClause
 import io.dustin.common.model.request.QueryPage
 import io.dustin.domain.mugi.model.Mugi
 import io.dustin.domain.mugi.service.ReadMugiService
@@ -12,17 +14,17 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
-class ReadRecordUseCase(
+class ReadMugiUseCase(
     private val read: ReadMugiService,
-    private val readMusician: ReadUserService,
+    private val readUser: ReadUserService,
 ) {
 
-    fun recordById(id: Long): Mono<Mugi> {
+    fun mugiById(id: Long): Mono<Mugi> {
         return read.mugiByIdOrThrow(id)
     }
 
     fun recordByMusicianId(queryPage: QueryPage, userId: Long): Mono<Page<Mugi>> {
-        val user = readMusician.userByIdOrThrow(userId)
+        val user = readUser.userByIdOrThrow(userId)
         return user.flatMapMany { user ->
             read.mugiByUserId(userId, queryPage.fromPageable())
                 .map {
@@ -36,12 +38,12 @@ class ReadRecordUseCase(
 
     }
 
-    fun allRecords(queryPage: QueryPage, matrixVariable: MultiValueMap<String, Any>): Flux<Mugi> {
+    fun allMugis(queryPage: QueryPage, matrixVariable: MultiValueMap<String, Any>): Flux<Mugi> {
         val prefix = "mugi"
         val clazz = Record::class
         val whereClause = createNativeWhereClause(prefix, clazz, matrixVariable)
         val (orderSql, limitSql) = createNativeSortLimitClause(prefix, clazz, queryPage)
-        return read.allRecords(whereClause = whereClause, orderClause = orderSql, limitClause = limitSql)
+        return read.allMugis(whereClause = whereClause, orderClause = orderSql, limitClause = limitSql)
     }
 
 }

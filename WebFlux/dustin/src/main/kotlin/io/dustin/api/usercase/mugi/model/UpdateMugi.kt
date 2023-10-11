@@ -15,7 +15,7 @@ data class UpdateMugi(
         val assignments = mutableMapOf<SqlIdentifier, Any>()
         title?.let {
             assignments[SqlIdentifier.unquoted("title")] = it
-            mugi.title = it
+            mugi.name = it
         }
         label?.let {
             assignments[SqlIdentifier.unquoted("label")] = it

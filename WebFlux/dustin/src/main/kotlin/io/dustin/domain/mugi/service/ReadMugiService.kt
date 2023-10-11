@@ -14,7 +14,7 @@ class ReadMugiService(
     fun mugiByIdOrThrow(id: Long, message: String? = null) = mugiRepository.findByIdOrThrow(id, message)
     fun mugiByUserId(userId: Long, pageable: Pageable) = mugiRepository.findByUserId(userId, pageable)
     fun mugiCountByUser(userId: Long) = mugiRepository.countByUserId(userId)
-    fun allMugiss(whereClause: String = "",
+    fun allMugis(whereClause: String = "",
                    orderClause: String = "",
                    limitClause: String = "") = mugiRepository.findAllMugis(whereClause, orderClause, limitClause)
     fun mugis() = mugiRepository.findMugis()
