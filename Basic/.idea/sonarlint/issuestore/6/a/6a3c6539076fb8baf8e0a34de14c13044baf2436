@@ -1,11 +1,0 @@
-
-Gkotlin:S108K")Either remove or fill this block of code.(ß˜íß8èøì”1
-Qkotlin:S1481+"-Remove this unused "nameList" local variable.(ì¬Šúÿÿÿÿ8èøì”1
-Jkotlin:S1481$"+Remove this unused "result" local variable.(Éø·ˆ8èøì”1
-Skotlin:S1481"/Remove this unused "resultName" local variable.(·„±Éúÿÿÿÿ8‘èøì”1
-Wkotlin:S1481"3Remove this unused "numCheckResult" local variable.(Ùßì·şÿÿÿÿ8‘èøì”1
-Kkotlin:S1481
-",Remove this unused "newType" local variable.(’Òñâ8‘èøì”1
-vkotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(‚Ûª«ûÿÿÿÿ8”èøì”1
-Jkotlin:S6519
-"+Replace "equals" with binary operator "==".(’Òñâ8–èøì”1
