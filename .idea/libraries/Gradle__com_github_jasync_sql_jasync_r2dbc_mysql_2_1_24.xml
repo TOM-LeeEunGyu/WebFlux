@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.jasync-sql:jasync-r2dbc-mysql:2.1.24" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.github.jasync-sql" artifactId="jasync-r2dbc-mysql" version="2.1.24" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jasync-sql/jasync-r2dbc-mysql/2.1.24/faf24c94ce655627ef4b1d7df9a2a8ba124a0725/jasync-r2dbc-mysql-2.1.24.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jasync-sql/jasync-r2dbc-mysql/2.1.24/c1bfa442dd7c5c64ff5d6585c6d70bfa08a2bacd/jasync-r2dbc-mysql-2.1.24-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

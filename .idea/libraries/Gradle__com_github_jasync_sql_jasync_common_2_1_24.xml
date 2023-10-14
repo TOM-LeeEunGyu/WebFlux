@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.jasync-sql:jasync-common:2.1.24" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.github.jasync-sql" artifactId="jasync-common" version="2.1.24" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jasync-sql/jasync-common/2.1.24/c49e327b7be158d600a969be9044f5cae7a34ea5/jasync-common-2.1.24.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jasync-sql/jasync-common/2.1.24/eececd0e46f8805fe715ca0b16a11cd99412abb3/jasync-common-2.1.24-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
