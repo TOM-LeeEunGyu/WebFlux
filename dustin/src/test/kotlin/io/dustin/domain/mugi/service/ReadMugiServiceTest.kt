@@ -25,7 +25,7 @@ class ReadMugiServiceTest @Autowired constructor(
         // then
         mono.`as`(StepVerifier::create)
             .assertNext {
-                assertThat(it.name).isEqualTo("Now's The Time")
+                assertThat(it.name).isEqualTo("Nows The Time")
             }
             .verifyComplete()
     }
@@ -43,7 +43,7 @@ class ReadMugiServiceTest @Autowired constructor(
 
         // then
         flux.`as`(StepVerifier::create)
-            .expectNext("Now's The Time")
+            .expectNext("Nows The Time")
             .verifyComplete()
     }
 
@@ -52,14 +52,14 @@ class ReadMugiServiceTest @Autowired constructor(
     fun mugiByUserCountTEST() {
         // given
         //val id = 2L
-        val userId = 10L
+        val userId = 1L
 
         // when
         val count = read.mugiCountByUser(userId)
 
         // then
         count.`as`(StepVerifier::create)
-            .expectNext(3)
+            .expectNext(2)
             .verifyComplete()
     }
 
@@ -70,6 +70,7 @@ class ReadMugiServiceTest @Autowired constructor(
 
         // when
         val flux = read.mugis().map { it.user?.name }.take(1)
+        println("flux    " + flux)
 
         // then
         flux.`as`(StepVerifier::create)

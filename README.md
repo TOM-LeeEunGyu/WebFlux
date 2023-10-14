@@ -10,7 +10,9 @@
     updateMugiTEST 에러 발생 (expectation "assertNext" failed (expected: onNext(); actual: onError(org.springframework.data.mapping.MappingException: Couldn't find PersistentEntity for type class java.lang.Record))
     레포지토리 정리중 10/06 이후 코드 모조리 삭제됨 -> 깃 reset으로 복구
 
-
+    10/11
+    updateMugiTEST 에러 해결 못함
+    mugis by converter test 과정에서 에러 발생(NullPointerException)
 
 
 

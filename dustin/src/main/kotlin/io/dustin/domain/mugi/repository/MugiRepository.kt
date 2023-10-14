@@ -12,12 +12,12 @@ import reactor.core.publisher.Mono
 interface MugiRepository: R2dbcRepository<Mugi, Long>, CustomMugiRepository {
     override fun findById(id: Long): Mono<Mugi>
     fun findByUserId(id: Long, pageable: Pageable): Flux<Mugi>
-    @Query("SELECT COUNT(id) FROM record WHERE user_id = :userId")
+    @Query("SELECT COUNT(id) FROM mugi WHERE user_id = :userId")
     fun countByUserId(@Param("userId") userId: Long): Mono<Long>
 
     @Query("""
             SELECT user.name AS userName,
-                   user.genre,
+                   user.job,
                    user.created_at AS mCreatedAt,
                    user.updated_at AS mUpdatedAt,
                    mugi.*

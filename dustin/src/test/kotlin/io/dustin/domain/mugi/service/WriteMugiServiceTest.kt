@@ -72,6 +72,8 @@ class WriteMugiServiceTest @Autowired constructor(
             write.update(it, assignments)
         }.then(read.mugiById(1))
 
+        println("updated   "+updated)
+
         // then
         updated.`as`(StepVerifier::create)
             .assertNext {
