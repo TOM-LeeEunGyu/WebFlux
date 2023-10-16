@@ -17,7 +17,7 @@ class CustomMugiRepositoryImpl(
 ): CustomMugiRepository {
 
     override fun updateMugi(mugi: Mugi, assignments: MutableMap<SqlIdentifier, Any>): Mono<Mugi> {
-        return query.update(Record::class.java)
+        return query.update(Mugi::class.java)
             .matching(query(where("id").`is`(mugi.id!!)))
             .apply(Update.from(assignments))
             .thenReturn(mugi)

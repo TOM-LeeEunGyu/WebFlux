@@ -14,6 +14,12 @@
     updateMugiTEST 에러 해결 못함
     mugis by converter test 과정에서 에러 발생(NullPointerException)
 
+    10/16
+    updateMugiTEST 에러 해결(CustomMugiRepositoryImpl query.update(Mugi::class.java) 오타)
+    mugis by converter test 에러 해결(컨버터를 설정하는 config 관련 문제)
+    WriteUseCase 테스트 코드 작성 및 테스트 완료
+    ReadUseCase 테스트 코드 작성 및 테스트 완료
+
 
 
 

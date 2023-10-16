@@ -22,8 +22,8 @@ class MugiReadConverter: Converter<Row, Mugi> {
 
         val mugi = Mugi(
             id = row.get("id", Long::class.javaObjectType)!!,
-            userId = row.get("musician_id", Long::class.javaObjectType)!!,
-            name = row.get("title", String::class.java),
+            userId = row.get("user_id", Long::class.javaObjectType)!!,
+            name = row.get("name", String::class.java),
             label = row.get("label", String::class.java),
             releasedType = ReleasedType.valueOf(row.get("released_type", String::class.java)!!),
             releasedYear = row.get("released_year", Int::class.javaObjectType)!!,

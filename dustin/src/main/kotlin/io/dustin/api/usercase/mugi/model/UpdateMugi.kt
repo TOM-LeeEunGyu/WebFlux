@@ -5,7 +5,7 @@ import io.dustin.domain.mugi.model.code.ReleasedType
 import org.springframework.data.relational.core.sql.SqlIdentifier
 
 data class UpdateMugi(
-    val title: String? = null,
+    val name: String? = null,
     var label: String? = null,
     var releasedType: ReleasedType? = null,
     var releasedYear: Int? = null,
@@ -13,8 +13,8 @@ data class UpdateMugi(
 ) {
     fun createAssignments(mugi: Mugi): Pair<Mugi, MutableMap<SqlIdentifier, Any>> {
         val assignments = mutableMapOf<SqlIdentifier, Any>()
-        title?.let {
-            assignments[SqlIdentifier.unquoted("title")] = it
+        name?.let {
+            assignments[SqlIdentifier.unquoted("name")] = it
             mugi.name = it
         }
         label?.let {
@@ -22,11 +22,11 @@ data class UpdateMugi(
             mugi.label = it
         }
         releasedType?.let {
-            assignments[SqlIdentifier.unquoted("releasedType")] = it
+            assignments[SqlIdentifier.unquoted("released_type")] = it
             mugi.releasedType = it
         }
         releasedYear?.let {
-            assignments[SqlIdentifier.unquoted("releasedYear")] = it
+            assignments[SqlIdentifier.unquoted("released_year")] = it
             mugi.releasedYear = it
         }
         format?.let {

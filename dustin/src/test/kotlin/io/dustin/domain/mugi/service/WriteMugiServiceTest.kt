@@ -57,14 +57,14 @@ class WriteMugiServiceTest @Autowired constructor(
         val name = "Now's The Time"
 
         val target = read.mugiByIdOrThrow(1)
-        println("target   "+target)
+        //println("target   "+target)
 
         val assignments = mutableMapOf<SqlIdentifier, Any>()
         name?.let {
             assignments[SqlIdentifier.unquoted("name")] = it
         }
         if(assignments.isEmpty()) {
-            throw BadParameterException("업데이트 정보가 누락되었습니다. [name, genre] 정보를 확인하세요.")
+            throw BadParameterException("업데이트 정보가 누락되었습니다. [name, job] 정보를 확인하세요.")
         }
 
         // when
@@ -72,7 +72,7 @@ class WriteMugiServiceTest @Autowired constructor(
             write.update(it, assignments)
         }.then(read.mugiById(1))
 
-        println("updated   "+updated)
+        //println("updated   "+updated)
 
         // then
         updated.`as`(StepVerifier::create)

@@ -20,7 +20,7 @@ class WriteMugiUseCase(
     fun insert(command: CreateMugi): Mono<Mugi> {
         val created = Mugi(
             userId = command.userId,
-            name = command.title,
+            name = command.name,
             label = command.label,
             releasedType = command.releasedType,
             releasedYear = command.releasedYear,

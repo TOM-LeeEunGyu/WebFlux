@@ -11,7 +11,7 @@ data class CreateMugi(
 
     @field:NotNull
     @field:Size(min = 1, message = "무기의 이름이 누락되었습니다. 최소 한 글자 이상이어야 합니다.")
-    val title: String,
+    val name: String,
 
     @field:NotNull(message = "무기의 각인 정보가 누락되었습니다.")
     var label: String,
