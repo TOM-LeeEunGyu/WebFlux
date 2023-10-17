@@ -1,4 +1,4 @@
-회사 선임님 깃에 올라가 있는 Spring Webflux(Kotilin)을 무작정 따라해보자
+회사 선임님 깃에 올라가 있는 Spring Webflux(Kotilin)을 무작정 따라해보자 (챕터별로 branch를 나누어 진행한다.)
 
 시작하기 앞서 webflux란 무엇인지 알아보자
 WebFlux 란 client, server 에서 reactive 스타일의 어플리케이션의 개발을 도와주는 스프링 모듈입니다. WebFlux 는 기존의 Servlet API를 기반으로 구축된 웹 프레임 워크인 Spring WebMvc 를 대체할 수 있는 웹 프레임워크입니다.(라고 블로그에 적혀 있다)
