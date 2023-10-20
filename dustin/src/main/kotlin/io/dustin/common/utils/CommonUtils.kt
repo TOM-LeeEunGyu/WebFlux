@@ -1,8 +1,7 @@
-package io.dustin.common.utils
-
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import io.dustin.common.exception.BadParameterException
 import io.dustin.common.exception.MissingInformationException
 import io.dustin.common.exception.NotFoundException
 import reactor.core.publisher.Mono
@@ -46,6 +45,12 @@ fun toJson(any: Any): String {
     mapper.registerModule(JavaTimeModule())
     mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
     return mapper.writeValueAsString(any)
+}
+
+fun isParamBlankThrow(value: String) {
+    if(value.isBlank()) {
+        throw BadParameterException("빈 공백은 허용하지 않습니다.")
+    }
 }
 
 /**
