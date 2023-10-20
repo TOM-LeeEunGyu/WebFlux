@@ -22,6 +22,10 @@
     1. matrixVariable처리 관련 부분
     2. CustomUserRepositoryImpl update 관련 부분(assignments: MutableMap<SqlIdentifier, Any> 어떻게 작동하는지 모르겠음)
 
+    10/21
+    브랜치 이름 변경
+    
+
 
 
 
