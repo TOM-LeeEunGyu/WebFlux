@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono
 
 @Validated
 @RestController
-@RequestMapping("/api/v1/records")
+@RequestMapping("/api/v1/mugis")
 class MugiController(
     private val readMugiUseCase: ReadMugiUseCase,
     private val writeMugiUseCase: WriteMugiUseCase,

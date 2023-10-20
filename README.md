@@ -20,6 +20,13 @@
     WriteUseCase 테스트 코드 작성 및 테스트 완료
     ReadUseCase 테스트 코드 작성 및 테스트 완료
 
+    10/20
+    controller test 코드 작성 및 테스트 완료
+    controllerTest createMugiTEST 에러 발생 (Status expected:<201 CREATED> but was:<500 INTERNAL_SERVER_ERROR>, expectStatus().isCreated 부분에서 에러 발생)
+    해결과정: 1. java version 변경(20->17)
+            2. java.lang.IllegalStateException: Authentication is not possible over an unsafe connection. Please use SSL or specify 'rsaPublicKey' 에러 발생
+            3. 2번에러 해결: db연결(왜 disconnected 됐는지 모르겠음)
+    
 
 
 
