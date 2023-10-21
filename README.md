@@ -26,6 +26,9 @@
     해결과정: 1. java version 변경(20->17)
             2. java.lang.IllegalStateException: Authentication is not possible over an unsafe connection. Please use SSL or specify 'rsaPublicKey' 에러 발생
             3. 2번에러 해결: db연결(왜 disconnected 됐는지 모르겠음)
+
+    10/21
+    브랜치 이름 변경
     
 
 
