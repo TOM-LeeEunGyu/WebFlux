@@ -1,7 +1,7 @@
 package io.dustin.domain.user.service
 
 import io.dustin.DustinApplication
-import io.dustin.api.usercase.user.model.UpdateUser
+import io.dustin.api.router.user.model.UpdateUser
 import io.dustin.common.transaction.Transaction
 import io.dustin.domain.user.model.User
 import io.dustin.domain.user.model.code.Job

@@ -1,8 +1,8 @@
 package io.dustin.api.usecase.mugi
 
 import io.dustin.api.usercase.mugi.WriteMugiUseCase
-import io.dustin.api.usercase.mugi.model.CreateMugi
-import io.dustin.api.usercase.mugi.model.UpdateMugi
+import io.dustin.api.router.mugi.model.CreateMugi
+import io.dustin.api.router.mugi.model.UpdateMugi
 import io.dustin.domain.mugi.model.code.MugiFormat
 import io.dustin.domain.mugi.model.code.ReleasedType
 import org.assertj.core.api.Assertions.assertThat

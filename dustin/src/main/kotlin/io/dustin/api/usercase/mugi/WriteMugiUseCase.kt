@@ -1,7 +1,7 @@
 package io.dustin.api.usercase.mugi
 
-import io.dustin.api.usercase.mugi.model.CreateMugi
-import io.dustin.api.usercase.mugi.model.UpdateMugi
+import io.dustin.api.router.mugi.model.CreateMugi
+import io.dustin.api.router.mugi.model.UpdateMugi
 import io.dustin.common.exception.BadParameterException
 import io.dustin.domain.mugi.model.Mugi
 import io.dustin.domain.mugi.service.ReadMugiService

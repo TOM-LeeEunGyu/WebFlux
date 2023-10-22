@@ -2,8 +2,8 @@ package io.dustin.api.controller
 
 import io.dustin.api.usercase.mugi.ReadMugiUseCase
 import io.dustin.api.usercase.mugi.WriteMugiUseCase
-import io.dustin.api.usercase.mugi.model.CreateMugi
-import io.dustin.api.usercase.mugi.model.UpdateMugi
+import io.dustin.api.router.mugi.model.CreateMugi
+import io.dustin.api.router.mugi.model.UpdateMugi
 import io.dustin.common.model.request.QueryPage
 import io.dustin.domain.mugi.model.Mugi
 import jakarta.validation.Valid

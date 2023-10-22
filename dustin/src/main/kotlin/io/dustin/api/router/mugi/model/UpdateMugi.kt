@@ -1,4 +1,4 @@
-package io.dustin.api.usercase.mugi.model
+package io.dustin.api.router.mugi.model
 
 import io.dustin.domain.mugi.model.Mugi
 import io.dustin.domain.mugi.model.code.ReleasedType

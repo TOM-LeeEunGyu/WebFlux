@@ -1,7 +1,7 @@
 package io.dustin.api.controller
 
-import io.dustin.api.usercase.user.model.CreateUser
-import io.dustin.api.usercase.user.model.UpdateUser
+import io.dustin.api.router.user.model.CreateUser
+import io.dustin.api.router.user.model.UpdateUser
 import io.dustin.api.usercase.user.ReadUserUseCase
 import io.dustin.api.usercase.user.WriteUserUseCase
 import io.dustin.common.model.request.QueryPage
